@@ -1,0 +1,328 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar{
+    height: 60px;
+    background-color: rgb(7, 137, 212);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    background-color: white;
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
+}
+.logo_font{
+    font-size: 22px;
+}
+.fas{
+    font-size: 22px;
+}
+.meni ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-right: 100px;
+}
+.meni ul li{
+    margin-right: 20px;
+}
+.slika{
+    width: 100%;
+    height: 40%;
+}
+.novosti{
+    height: 70vh;
+    width: 100%;
+    background-color:  white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+.novosti h1{
+    margin: 40px;
+}
+.novosti_kartica{
+    height: 50%;
+    width: 60%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.kartica_slika{
+    height: 100%;
+    width: 35%;
+}
+.kartica_slika img{
+    height: 100%;
+    width: 100%;
+}
+.kartica_sadrzaj{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+}
+.kartica_naslov{
+    height: 40%;
+    padding: 2%;
+}
+.kartica_tekst{
+    padding: 2%;
+    height: 60%;
+}
+.o_nama{
+    width: 100%;
+    height: 80vh;
+    padding: 70px;
+    background-image: url(https://www.cochrane.org/sites/default/files/public/styles/social_media/public/uploads/news/young-confident-asian-male-dentist-medical-treatment-to-a-female-patient-at-the-clinic.-dental-clinic-concept-911844046_1257x838_3.jpeg?itok=3i_vcvWo);
+    background-color: rgb(7, 137, 212);
+    opacity: 75%;
+    display: flex;
+    flex-direction: row;
+}
+.background_img{
+    height: 100%;
+    width: 100%;
+    background-color: royalblue;
+
+}
+.o_nama_naslov{
+    margin-bottom: 40px;
+}
+.o_nama_sadrzaj{
+    width: 50%;
+}
+.o_nama_slika{
+ width: 50%;
+}
+.o_nama_slika img{
+ width: 90%;
+ opacity: 100%;
+ border: 10px solid rgb(7, 137, 212);
+}
+.o_nama p{
+    padding-right: 50px;
+    opacity: 400%;
+}
+.nas_tim{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.nas_tim h1{
+    margin: 30px 0px 30px 0px;
+}
+.nas_tim_kartica{
+    width: 300px;
+    height: 450px;
+    border:1px solid black;
+    margin-bottom: 30px;
+}
+.doktor_slika{
+    width: 100%;
+    height: 80%;
+}
+.doktor_slika img{
+    width: 100%;
+    height: 100%;
+}
+.doktor_ime{
+    text-align: center;
+    padding: 10px;
+}
+.doktor_ime p a{
+    text-decoration: none;
+    color: black;
+}
+.doktor_ime p{
+    margin-top: 10px;
+}
+.kartice_doktor{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.galerija{
+    width: 100%;
+    background-color: rgb(7, 137, 212);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.galerija_naslov{
+    margin: 30px 0px 30px 0px;
+}
+.galerija_slike{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 10px 10px;
+    width: 80%;
+    margin-bottom: 30px;
+}
+.slika_okvir{
+    height: 200px;
+    width: 300px;
+    border: 1px solid black;
+}
+.slika_okvir img{
+    height: 100%;
+    width: 100%;
+}
+.footer_info{
+    background-color: #272626;
+    height: 70vh;   
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.logo2{
+    height: 200px;
+    width: 200px;
+    background-color: white;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding: 10px;
+}
+.logo2 p{
+    font-size: 50px;
+}
+.logo2 .fas{
+    font-size: 50px;
+    color: rgb(7, 137, 212);
+}
+.drugi{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.treci{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.adresa{
+    margin-top: 20px;
+}
+.telefon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+}
+.telefon1{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+}
+.telefon .fas{
+    color: rgb(7, 137, 212);
+    margin-right: 15px;
+}
+.telefon1 .fas{
+    margin-right: 15px;
+    color: rgb(7, 137, 212);
+}
+.mail{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 30px;
+}
+.mail .far{
+    margin-right: 15px;
+    font-size: 25px;
+    color: rgb(7, 137, 212);
+
+}
+.informacije p{
+    color: white;
+}
+.zakazite_pregled{
+    width: 25%;
+}
+.zakazite_pregled h2{
+    color: white;
+    margin-bottom: 20px;
+}
+.zakazite_pregled p{
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.button-18 {
+    align-items: center;
+    background-color: #0A66C2;
+    border: 0;
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 20px;
+    max-width: 480px;
+    min-height: 40px;
+    min-width: 0px;
+    overflow: hidden;
+    padding: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    touch-action: manipulation;
+    transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+  }
+  
+  .button-18:hover,
+  .button-18:focus { 
+    background-color: #16437E;
+    color: #ffffff;
+  }
+  
+  .button-18:active {
+    background: #09223b;
+    color: rgb(255, 255, 255, .7);
+  }
+  
+  .button-18:disabled { 
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, .08);
+    color: rgba(0, 0, 0, .3);
+  }
+ .footer_copyright{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     height: 70px;
+     width: 100%;
+     background-color: #333536;
+ }
+ .footer_copyright p{
+     color: white;
+ }
