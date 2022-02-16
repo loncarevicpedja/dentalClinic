@@ -21,11 +21,13 @@
                 </div>
                 <div class="meni">
                     <ul>
-                        <li>Nalsovna</li>
-                        <li>O nama</li>
-                        <li>Usluge</li>
-                        <li>Osoblje</li>
-                        <li>Kontkat</li>
+                        <li><a href="#"><p>NASLOVNA</p></a></li>
+                        <li><a href="#"><p>O NAMA</p></a></li>
+                        <li><a href="#"><p>USLUGE</p></a></li>
+                        <li><a href="#"><p>OSOBLJE</p></a></li>
+                        <li><a href="#"><p>KONTAKT</p></a></li>
+                        <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
+                        <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                     </ul>
                 </div>
             </div>

@@ -1,0 +1,230 @@
+.header{
+    width: 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar{
+    height: 60px;
+    background-color: rgb(7, 137, 212);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    background-color: white;
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
+}
+.logo_font{
+    font-size: 22px;
+}
+.meni ul li a{
+    text-decoration: none;
+    color: black;
+    height: 60px;
+    overflow: visible;
+}
+.meni ul li{
+    height: 60px;
+}
+.meni ul li a p{
+    margin-top: 10px;
+    padding: 10px;
+}
+#prijava{
+    background-color: black;
+
+}
+#prijava a{
+    color: white;
+height: 100%;
+width: 100%;
+}
+.content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+.fas{
+    font-size: 22px;
+}
+.meni ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    height: 100%;
+}
+.content{
+    height: 500px;
+    width: 100vw;
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+}
+.content_left{
+    height: 100%;
+    width: 25%;
+    background-color: brown;
+}
+.content_center{
+    height: 100%;
+    width: 50%;
+    background-color: forestgreen;
+}
+.content_right{
+    height: 100%;
+    width: 25%;
+    background-color: red;
+}
+  
+.footer_info{
+  background-color: #272626;
+  height: 70vh;   
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.logo2{
+  height: 200px;
+  width: 200px;
+  background-color: white;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding: 10px;
+}
+.logo2 p{
+  font-size: 50px;
+}
+.logo2 .fas{
+  font-size: 50px;
+  color: rgb(7, 137, 212);
+}
+.drugi{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.treci{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+.adresa{
+  margin-top: 20px;
+}
+.telefon{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+}
+.telefon1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+}
+.telefon .fas{
+  color: rgb(7, 137, 212);
+  margin-right: 15px;
+}
+.telefon1 .fas{
+  margin-right: 15px;
+  color: rgb(7, 137, 212);
+}
+.mail{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+}
+.mail .far{
+  margin-right: 15px;
+  font-size: 25px;
+  color: rgb(7, 137, 212);
+
+}
+.informacije p{
+  color: white;
+}
+.zakazite_pregled{
+  width: 25%;
+}
+.zakazite_pregled h2{
+  color: white;
+  margin-bottom: 20px;
+}
+.zakazite_pregled p{
+  color: white;
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.button-18 {
+  align-items: center;
+  background-color: #0A66C2;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.button-18:hover,
+.button-18:focus { 
+  background-color: #16437E;
+  color: #ffffff;
+}
+
+.button-18:active {
+  background: #09223b;
+  color: rgb(255, 255, 255, .7);
+}
+
+.button-18:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+}
+.footer_copyright{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 70px;
+   width: 100%;
+   background-color: #333536;
+}
+.footer_copyright p{
+   color: white;
+}

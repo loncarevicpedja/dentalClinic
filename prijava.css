@@ -1,0 +1,124 @@
+.heaad{
+    width: 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar{
+    height: 60px;
+    background-color: rgb(7, 137, 212);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    background-color: white;
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
+}
+.logo_font{
+    font-size: 22px;
+}
+.meni ul li a{
+    text-decoration: none;
+    color: black;
+    height: 60px;
+    overflow: visible;
+}
+.meni ul li{
+    height: 60px;
+}
+.meni ul li a p{
+    margin-top: 10px;
+    padding: 10px;
+}
+#prijava{
+    background-color: black;
+
+}
+#prijava a{
+    color: white;
+height: 100%;
+width: 100%;
+}
+.fas{
+    font-size: 22px;
+}
+.meni ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin-right: 50px;
+    height: 100%;
+}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password],input[type=email], input[type=submit] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+button:hover {
+  opacity: 0.8;
+}
+.cont {
+  padding: 50px 16px 50px 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+.content{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    width: 30%;    
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.registracija button a{
+    text-decoration: none;
+    color: white;
+}
+.registracija button, input[type=submit]{
+    color: blanchedalmond;
+    background-color: rgb(52, 123, 255);
+}
+.footer{
+    width: 100%;
+}
+ .footer_copyright{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    background-color: #333536;
+}
+.footer_copyright p{
+    color: white;
+}

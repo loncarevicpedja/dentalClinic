@@ -10,8 +10,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
-    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
 }
 .logo{
     display: flex;
@@ -24,6 +25,28 @@
 .logo_font{
     font-size: 22px;
 }
+.meni ul li a{
+    text-decoration: none;
+    color: black;
+    height: 60px;
+    overflow: visible;
+}
+.meni ul li{
+    height: 60px;
+}
+.meni ul li a p{
+    margin-top: 10px;
+    padding: 10px;
+}
+#prijava{
+    background-color: black;
+    width: 150px;
+}
+#prijava a{
+    color: white;
+height: 100%;
+width: 100%;
+}
 .fas{
     font-size: 22px;
 }
@@ -31,10 +54,8 @@
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    margin-right: 100px;
-}
-.meni ul li{
-    margin-right: 20px;
+    margin-right: 50px;
+    height: 100%;
 }
 .slika{
     width: 100%;
