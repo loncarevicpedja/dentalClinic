@@ -16,6 +16,9 @@
     position: sticky;
     top: 0;
 }
+.fa-angles-down{
+  color: wheat;
+}
 .logo{
     display: flex;
     flex-direction: row;

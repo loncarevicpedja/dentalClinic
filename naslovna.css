@@ -5,6 +5,7 @@
 }
 .navbar{
     height: 60px;
+    overflow: visible !important;
     background-color: rgb(7, 137, 212);
     display: flex;
     flex-direction: row;
@@ -25,6 +26,10 @@
 .logo_font{
     font-size: 22px;
 }
+.meni{
+    overflow: visible;
+    margin-top: 100px;
+}
 .meni ul li a{
     text-decoration: none;
     color: black;
@@ -39,16 +44,49 @@
     padding: 10px;
 }
 #prijava{
-    background-color: black;
-    width: 150px;
+    background-color: #272626;
+    padding: 15px;
 }
 #prijava a{
-    color: white;
+color: white;
 height: 100%;
+margin-top: -7px;
 width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+.fa-plus{
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 .fas{
     font-size: 22px;
+}
+.reg_meni{
+    background-color: red;
+    height: 100px ;
+    width: 300px ;
+    display: none;
+}
+.show{
+    display: block;
+}
+.meni_i_opcije{
+    display: flex;
+    flex-direction: column;
+}
+.reg_meni ul{
+    display: flex;
+    flex-direction: column !important;
+}
+.korisnicko_i_dugme{
+    display: flex;
+    flex-direction: row;
+    background-color: #272626;
 }
 .meni ul{
     display: flex;

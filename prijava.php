@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +35,6 @@
             </div>
         </div>
         <?php
-        session_start();
         function redirect($location)
         {
             header("location: {$location}");
@@ -44,7 +46,6 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $email = $_POST['email'];
                 $password = $_POST['psw'];
-        
                 if (empty($email)) {
                     $errors[] = "Polje za email ne sme da ostane prazno";
                 }
@@ -63,40 +64,38 @@
                         echo '<div class="alert">' . $error . '</div>';
                     }
                 }
+            }        
+        }
+        function user_login($email, $pass)
+        {
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "proba";
+            
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+            
+            $sql = "SELECT * FROM korisnici WHERE email = '$email'";
+            $result = $conn->query($sql);
+            if ($result->num_rows == 1) {
+                $data = $result->fetch_assoc();
+                if (password_verify($pass, $data['lozinka'])) {
+                    $_SESSION['email'] = $data['email'];
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
             }
-        
+            $conn->close();
         }
-function user_login($email, $pass)
-{
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "proba";
-    
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } 
-    
-    $sql = "SELECT * FROM korisnici WHERE email = '$email'";
-    $result = $conn->query($sql);
-    if ($result->num_rows == 1) {
-        $data = $result->fetch_assoc();
-        if (password_verify($pass, $data['lozinka'])) {
-            $_SESSION['email'] = $email;
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }
-    $conn->close();
-}
-validate_user_login();
-        
+        validate_user_login();        
         ?>
         <div class="content">
             <form method="POST">

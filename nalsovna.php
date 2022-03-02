@@ -1,9 +1,13 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Dental clinic</title>
     <style>
@@ -26,8 +30,25 @@
                         <li><a href="#"><p>USLUGE</p></a></li>
                         <li><a href="#"><p>OSOBLJE</p></a></li>
                         <li><a href="#"><p>KONTAKT</p></a></li>
-                        <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
-                        <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
+                        <?php if(!isset($_SESSION['email'])) : ?>
+                            <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
+                        <?php else : ?>
+                        <div class="meni_i_opcije">
+                        <div class="korisnicko_i_dugme">
+                            <li id="prijava"><a><p><?php echo $_SESSION['email'];?></p></a></li>
+                            <i onclick=openMenu() class="fa-solid fa-plus"></i>
+                            
+                        </div>
+                            <div class="reg_meni">
+                                <ul>
+                                    <li>zakazite pregled</li>
+                                    <li>zakazite pregled</li>
+                                    <li>zakazite pregled</li>
+                                    <li>zakazite pregled</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -76,6 +97,15 @@
                 }
                 $conn->close();
                 ?>
+                <?php 
+                    if(isset($_SESSION['email']))
+                    {
+                        echo $_SESSION['email'];
+                    }
+                    else{
+                        echo "Uloguj se";
+                    }
+                ?>
             </div>
             <div class="o_nama">
                 <div class="o_nama_sadrzaj">
@@ -93,8 +123,7 @@
             <div class="nas_tim">
                 <h1>Naš tim</h1>
                 <div class="kartice_doktor">
-
-                    <?php
+                <?php
                 $servername = "localhost";
                 $username = "root";
                 $password = "";
@@ -214,5 +243,10 @@
                 </div>
         </div>
     </div>
+    <script>
+        function openMenu() {
+            document.getElementById("reg_meni").classList.toggle("show");
+        }
+    </script>
 </body>
 </html>

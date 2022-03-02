@@ -116,9 +116,18 @@
             }
             function email_exists($email)
             {
-                $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-                $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
-                if ($query->num_rows > 0) {
+            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+            $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "proba";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            
+                $result = $conn->query($query);
+                if ($result->num_rows > 0) {
                     return true;
                 } else {
                     return false;
