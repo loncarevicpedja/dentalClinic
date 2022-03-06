@@ -41,7 +41,7 @@
                         </div>
                             <div id="reg_meni" class="reg_meni">
                                 <ul>
-                                    <li><a href="#">ZAKAZITE PREGLED</a></li>
+                                    <li><a href="#">Lekar</a></li>
                                     <li><a href="#">ISTORIJA BOLESTI</a></li>
                                     <li><a href="#">INFORMACIJE O NALOGU</a></li>
                                     <li id="odjava"><a href="./logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>ODJAVITE SE</a></li>

@@ -30,21 +30,21 @@
                         <li><a href="#"><p>USLUGE</p></a></li>
                         <li><a href="#"><p>OSOBLJE</p></a></li>
                         <li><a href="#"><p>KONTAKT</p></a></li>
-                        <?php if(!isset($_SESSION['email'])) : ?>
+                        <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         <?php else : ?>
                         <div class="meni_i_opcije">
                         <div class="korisnicko_i_dugme">
-                            <li id="prijavljen"><a><p><?php echo $_SESSION['email'];?></p></a></li>
+                            <li id="prijavljen"><a><p><?php echo $_SESSION['zaglavljeEmail'];?></p></a></li>
                             <i onclick="openMenu()" class="fa-solid fa-plus"></i>
                             
                         </div>
                             <div id="reg_meni" class="reg_meni">
                                 <ul>
-                                    <li><a href="#">ZAKAZITE PREGLED</a></li>
-                                    <li><a href="#">ISTORIJA BOLESTI</a></li>
-                                    <li><a href="#">INFORMACIJE O NALOGU</a></li>
-                                    <li id="odjava"><a href="./logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>ODJAVITE SE</a></li>
+                                    <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
+                                    <li><a href="#">PRIKAZ KOSINIKA</a></li>
+                                    <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
+                                    <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
                         </div>

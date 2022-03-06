@@ -34,7 +34,7 @@
         <?php 
         function redirect($location)
         {
-            header("location: {$location}");
+            header('location: {$location}');
             exit();
         }
         function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $maticni, $telefon, $email, $lozinka){
@@ -63,7 +63,7 @@
                 die("Connection failed: " . $conn->connect_error);
             } 
 
-            $sql = "INSERT INTO korisnici (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, email, lozinka)
+            $sql = "INSERT INTO zahtevi (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, email, lozinka)
             VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$maticni', '$telefon', '$email', '$lozinka')";
 
             if ($conn->query($sql) === TRUE) {
@@ -91,10 +91,10 @@
                     $lozinka = $_POST['psw'];
                     $potvrdjena_lozinka = $_POST['psw-repeat'];
                     if (strlen($ime) < 3) {
-                        $errors[] = "Vase ime je krace od 3 karaktera";
+                        $errors[] = "Vase ime ne sme biti krace od 3 karaktera";
                     }
                     if (strlen($prezime) < 3) {
-                        $errors[] = "Vase prezime je krace od 3 karaktera";
+                        $errors[] = "Vase prezime ne sme biti krace od 3 karaktera";
                     }
                     if (email_exists($email)) {
                         $errors[] = "Uneti mejl vec postoji";
@@ -175,6 +175,7 @@
 
                     <label for="psw-repeat"><b>Potvrda lozinke</b></label>
                     <input type="password" placeholder="Potvrdite lozinku" name="psw-repeat" id="psw-repeat" required>
+
                     <hr>
                     <button type="submit" class="registerbtn">Register</button>
                 </div>

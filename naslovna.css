@@ -28,7 +28,6 @@
 }
 .meni{
     overflow: visible;
-    margin-top: 100px;
 }
 .meni ul li a{
     text-decoration: none;
@@ -47,7 +46,21 @@
     background-color: #272626;
     padding: 15px;
 }
+#prijavljen{
+    background-color: #272626;
+    padding: 15px;
+    width: 266px;
+}
 #prijava a{
+color: white;
+height: 100%;
+margin-top: -7px;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+#prijavljen a{
 color: white;
 height: 100%;
 margin-top: -7px;
@@ -59,25 +72,75 @@ align-items: center;
 .fa-plus{
     color: white;
     font-size: 20px;
-    margin-top: 20px;
-    margin-left: 5px;
+    padding: 10px;
+    padding-top: 20px;
     cursor: pointer;
+    background-color: #272626;
+}
+.fa-plus:hover{
+    background-color: rgb(98, 105, 107);
+    transition: 0.5s;
 }
 .fas{
     font-size: 22px;
 }
 .reg_meni{
-    background-color: red;
-    height: 100px ;
-    width: 300px ;
+    background-color: #272626;
+    height: 100vh;
+    width: 305px ;
+    position: absolute;
+    top: 60px;
     display: none;
+    box-shadow: -10px 0px 28px rgb(43, 42, 42);
+    overflow: hidden;
+}
+.reg_meni ul li a{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 20px;
+}
+.pregleKorisnika{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.divNumOfNotification{
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    margin: 0 !important;
+    border-radius: 50%;
+    margin-right: -50px;
+}
+.reg_meni ul li:hover{
+    color: white;
+    background-color: rgb(98, 105, 107);
 }
 .show{
-    display: block;
+    display: block;    
+    animation-name: example;
+    animation-duration: 1s;
+    animation-direction: alternate;
+}
+.fa-arrow-right-from-bracket{
+    font-size: 23px;
+    margin-left: 145px;
+}
+.zatamni{
+    filter: blur(3px);
+    transition: 1s;
+}
+@keyframes example{
+    0%   {right:-350px;}
+    100%  {right:-1%;}
 }
 .meni_i_opcije{
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 .reg_meni ul{
     display: flex;
@@ -86,13 +149,11 @@ align-items: center;
 .korisnicko_i_dugme{
     display: flex;
     flex-direction: row;
-    background-color: #272626;
 }
 .meni ul{
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    margin-right: 50px;
     height: 100%;
 }
 .slika{

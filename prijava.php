@@ -46,6 +46,7 @@
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 $email = $_POST['email'];
                 $password = $_POST['psw'];
+                $typeUser = $_POST['type'];
                 if (empty($email)) {
                     $errors[] = "Polje za email ne sme da ostane prazno";
                 }
@@ -54,7 +55,16 @@
                 }
                 if (empty($errors)) {
                     if (user_login($email, $password)) {
-                        redirect('nalsovna.php');
+                        if($typeUser == 'pacijent')
+                        {
+                            redirect('nalsovna.php');
+                        }
+                        elseif($typeUser == 'lekar'){
+                            redirect('nalsovnaLekar.php');
+                        }
+                        elseif($typeUser == 'admin'){
+                            redirect('nalsovnaAdmin.php');
+                        }
                     } else {
                         $errors[] = "Neispravan unos, probajte ponovo!";
                     }
@@ -85,7 +95,7 @@
             if ($result->num_rows == 1) {
                 $data = $result->fetch_assoc();
                 if (password_verify($pass, $data['lozinka'])) {
-                    $_SESSION['email'] = $data['email'];
+                    $_SESSION['zaglavljeEmail'] = $data['email'];
                     return true;
                 } else {
                     return false;
@@ -100,6 +110,14 @@
         <div class="content">
             <form method="POST">
                 <div class="cont">
+
+                    <label><b>Tip naloga</b></label><br>
+                    <select name="type" id="">
+                        <option value="pacijent">Pacijent</option>
+                        <option value="lekar">Lekar</option>
+                        <option value="admin">Admin</option>
+                    </select><br>
+
                     <label for="uname"><b>Korisničko ime</b></label>
                     <input type="email" placeholder="Unesite korisničko ime" name="email" required>
 
