@@ -54,19 +54,23 @@
                     $errors[] = "Polje za lozinku ne sme da ostane prazno";
                 }
                 if (empty($errors)) {
-                    if (user_login($email, $password)) {
-                        if($typeUser == 'pacijent')
-                        {
-                            redirect('nalsovna.php');
+                    $tip = user_login($email, $password);
+                    if($tip == $typeUser)
+                    {
+                        if (user_login($email, $password) !== false) {
+                            if($typeUser == 'pacijent')
+                            {
+                                redirect('nalsovna.php');
+                            }
+                            elseif($typeUser == 'lekar'){
+                                redirect('nalsovnaLekar.php');
+                            }
+                            elseif($typeUser == 'admin'){
+                                redirect('nalsovnaAdmin.php');
+                            }
+                        } else {
+                            $errors[] = "Neispravan unos, probajte ponovo!";
                         }
-                        elseif($typeUser == 'lekar'){
-                            redirect('nalsovnaLekar.php');
-                        }
-                        elseif($typeUser == 'admin'){
-                            redirect('nalsovnaAdmin.php');
-                        }
-                    } else {
-                        $errors[] = "Neispravan unos, probajte ponovo!";
                     }
                 }
                 if (!empty($errors)) {
@@ -96,7 +100,7 @@
                 $data = $result->fetch_assoc();
                 if (password_verify($pass, $data['lozinka'])) {
                     $_SESSION['zaglavljeEmail'] = $data['email'];
-                    return true;
+                    return $data['tip'];
                 } else {
                     return false;
                 }

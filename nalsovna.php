@@ -30,12 +30,12 @@
                         <li><a href="#"><p>USLUGE</p></a></li>
                         <li><a href="#"><p>OSOBLJE</p></a></li>
                         <li><a href="#"><p>KONTAKT</p></a></li>
-                        <?php if(!isset($_SESSION['email'])) : ?>
+                        <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         <?php else : ?>
                         <div class="meni_i_opcije">
                         <div class="korisnicko_i_dugme">
-                            <li id="prijavljen"><a><p><?php echo $_SESSION['email'];?></p></a></li>
+                            <li id="prijavljen"><a><p><?php echo $_SESSION['zaglavljeEmail'];?></p></a></li>
                             <i onclick="openMenu()" class="fa-solid fa-plus"></i>
                             
                         </div>

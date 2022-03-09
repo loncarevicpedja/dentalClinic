@@ -36,9 +36,12 @@
         {
             header('location: {$location}');
             exit();
-        }
-        function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $maticni, $telefon, $email, $lozinka){
-         $ime = $_POST['ime'];
+        }                
+        function validate_user_registration()
+        {
+            $errors = [];
+            if ($_SERVER['REQUEST_METHOD'] == "POST") {
+                $ime = $_POST['ime'];
                 $prezime = $_POST['prezime'];
                 $pol = $_POST['pol'];
                 $mesto_rodjenja = $_POST['mesto-rodjenja'];
@@ -48,92 +51,120 @@
                 $telefon = $_POST['kontakt-telefon'];
                 $email = $_POST['email'];
                 $lozinka = $_POST['psw'];
-                $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
-
-               
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "proba";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            } 
-
-            $sql = "INSERT INTO zahtevi (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, email, lozinka)
-            VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$maticni', '$telefon', '$email', '$lozinka')";
-
-            if ($conn->query($sql) === TRUE) {
-                redirect('prijava.php');
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;echo "Greska!";
-            }
-
-            $conn->close();  
-        }
-                
-            function validate_user_registration()
-            {
-                $errors = [];
-                if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                    $ime = $_POST['ime'];
-                    $prezime = $_POST['prezime'];
-                    $pol = $_POST['pol'];
-                    $mesto_rodjenja = $_POST['mesto-rodjenja'];
-                    $drzava_rodjenja = $_POST['drzava-rodjenja'];
-                    $datum_rodjenja = $_POST['datum-rodjenja'];
-                    $maticni = $_POST['jmbg'];
-                    $telefon = $_POST['kontakt-telefon'];
-                    $email = $_POST['email'];
-                    $lozinka = $_POST['psw'];
-                    $potvrdjena_lozinka = $_POST['psw-repeat'];
-                    if (strlen($ime) < 3) {
-                        $errors[] = "Vase ime ne sme biti krace od 3 karaktera";
-                    }
-                    if (strlen($prezime) < 3) {
-                        $errors[] = "Vase prezime ne sme biti krace od 3 karaktera";
-                    }
-                    if (email_exists($email)) {
-                        $errors[] = "Uneti mejl vec postoji";
-                    }
-                    if (strlen($lozinka) < 8) {
-                        $errors[] = "Vasa lozinka ne sme biti kraca od 8 karaktera";
-                    }
-                    if ($lozinka != $potvrdjena_lozinka) {
-                        $errors[] = "Neispravno unesene lozinke";
-                    }
-                    if (!empty($errors)) {
-                        foreach ($errors as $error) {
-                            echo '<div class="alert">' . $error . '</div>';
-                        }
-                    } else {
-                       create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $maticni, $telefon, $email, $lozinka);
-                    }
+                $potvrdjena_lozinka = $_POST['psw-repeat'];
+                $korisnicko_ime = create_username($ime, $prezime);
+                if (strlen($ime) < 3) {
+                    $errors[] = "Vase ime ne sme biti krace od 3 karaktera";
                 }
-            }
-            function email_exists($email)
-            {
-            $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-            $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "proba";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            
-                $result = $conn->query($query);
-                if ($result->num_rows > 0) {
-                    return true;
+                if (strlen($prezime) < 3) {
+                    $errors[] = "Vase prezime ne sme biti krace od 3 karaktera";
+                }
+                if (email_exists($email)) {
+                    $errors[] = "Uneti mejl vec postoji";
+                }
+                if (strlen($lozinka) < 8) {
+                    $errors[] = "Vasa lozinka ne sme biti kraca od 8 karaktera";
+                }
+                if ($lozinka != $potvrdjena_lozinka) {
+                    $errors[] = "Neispravno unesene lozinke";
+                }
+                if (!empty($errors)) {
+                    foreach ($errors as $error) {
+                        echo '<div class="alert">' . $error . '</div>';
+                    }
                 } else {
-                    return false;
+                    $to = $email;
+                    $subject = "HTML email";
+
+                    $message = "
+                    <html>
+                    <head>
+                    <title>HTML email</title>
+                    </head>
+                    <body>
+                    <p>This email contains HTML Tags!</p>
+                    <table>
+                    <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    </tr>
+                    <tr>
+                    <td>John</td>
+                    <td>Doe</td>
+                    </tr>
+                    </table>
+                    </body>
+                    </html>
+                    ";
+
+                    // Always set content-type when sending HTML email
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                    // More headers
+                    $headers .= 'From: <loncarevicpedja2000@gmail.com>' . "\r\n";
+                    $headers .= 'Cc: sad' . "\r\n";
+
+                    mail($to,$subject,$message,$headers);
+                
                 }
             }
-            validate_user_registration();
+        }
+        function email_exists($email)
+        {
+        $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+        $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "proba";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function username_exists($username)
+        {
+        $query = "SELECT jmbg FROM korisnici WHERE username LIKE '$username'";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "proba";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function create_username($name, $surname){
+            $ishod = true;
+            while($ishod)
+            {
+                $username = "";
+                $a = 1;
+                $name=strtolower($name);
+                $surname=strtolower($surname);
+                for($i=0;$i<$a;$i++){
+                    $username .= $name[$i]; 
+                }
+                $a++;
+                $ishod = username_exists($username);
+                return $ishod;
+            }
+            return $ishod;
+        }
+        validate_user_registration();
         ?>
         <div class="content">
             <form method="POST">
