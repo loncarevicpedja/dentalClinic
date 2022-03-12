@@ -270,3 +270,19 @@ width: 100%;
 .footer_copyright p{
    color: white;
 }
+.obavestenjeVerifikacija{
+  text-align: center;
+  margin-top: 100px;
+}
+.content_verify{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content_verify a{
+  text-decoration: none;
+  color: white;
+}
+#dugme_nazad{
+  margin-top: 20px;
+}

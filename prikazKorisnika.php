@@ -25,11 +25,13 @@
                 </div>
                 <div class="meni">
                     <ul>
-                        <li><a href="nalsovnaAdmin.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="#"><p>O NAMA</p></a></li>
-                        <li><a href="#"><p>USLUGE</p></a></li>
-                        <li><a href="#"><p>OSOBLJE</p></a></li>
-                        <li><a href="#"><p>KONTAKT</p></a></li>
+                    <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         <?php else : ?>
@@ -43,6 +45,7 @@
                                 <ul>
                                     <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
                                     <li><a>PRIKAZ KOSINIKA</a></li>
+                                    <li><a href="#">KREIRAJ NALOG ZA LEKARA</a></li>
                                     <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
@@ -94,13 +97,13 @@
                         <h3>Email:</h3>
                         <p>".$row["email"]."</p>
                         <div class='ikonice'>
-                            <a href='brisiZahtev.php'  value='".$_SESSION["jmbg"]."'><i class='fa-regular fa-circle-xmark'></i></a>
+                            <a href='brisiKorisnika.php'  value='".$_SESSION["jmbg"]."'><i class='fa-regular fa-circle-xmark'></i></a>
                         </div>
                     </div>
                 </form>";
                     }
                 } else {
-                    echo "Nema zahteva za registraciju!";
+                    echo "Jos nema registrovanih korisnika!";
                 }
                 $conn->close();
                 ?>

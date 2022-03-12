@@ -204,3 +204,50 @@ align-items: center;
     margin-right: 10px;
     color: rgb(3, 172, 3);
 }
+.input_slika {
+    width: 50%;
+    padding: 15px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  .input_slika:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  .input_sadrzaj {
+    height: 150px;
+    width: 50%;
+    padding: 15px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  .input_sadrzaj:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  .addBtn {
+    background-color: rgb(7, 137, 212);
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+  }
+  
+  .addBtn:hover {
+    opacity: 1;
+  }
+  .forma_za_vest{
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }

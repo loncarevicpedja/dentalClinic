@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +24,13 @@
                     </div>
                     <div class="meni">
                         <ul>
-                            <li><a href="#"><p>NASLOVNA</p></a></li>
-                            <li><a href="#"><p>O NAMA</p></a></li>
-                            <li><a href="#"><p>USLUGE</p></a></li>
-                            <li><a href="#"><p>OSOBLJE</p></a></li>
-                            <li><a href="#"><p>KONTAKT</p></a></li>
+                        <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         </ul>
                     </div>
@@ -52,7 +57,7 @@
                 $email = $_POST['email'];
                 $lozinka = $_POST['psw'];
                 $potvrdjena_lozinka = $_POST['psw-repeat'];
-                $korisnicko_ime = create_username($ime, $prezime);
+                $korisnicko_ime = strval(create_username($ime, $prezime));
                 if (strlen($ime) < 3) {
                     $errors[] = "Vase ime ne sme biti krace od 3 karaktera";
                 }
@@ -75,38 +80,30 @@
                 } else {
                     $to = $email;
                     $subject = "HTML email";
-
-                    $message = "
-                    <html>
-                    <head>
-                    <title>HTML email</title>
-                    </head>
-                    <body>
-                    <p>This email contains HTML Tags!</p>
-                    <table>
-                    <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    </tr>
-                    <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    </tr>
-                    </table>
-                    </body>
-                    </html>
-                    ";
-
+                    
+                    $message = "<a href='http://localhost/projekat/verify.php'>Verifikacija naloga</a>";
+                    
                     // Always set content-type when sending HTML email
                     $headers = "MIME-Version: 1.0" . "\r\n";
                     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
+                    
                     // More headers
-                    $headers .= 'From: <loncarevicpedja2000@gmail.com>' . "\r\n";
-                    $headers .= 'Cc: sad' . "\r\n";
-
+                    $headers .= 'From: <cdental909@gmail.com>' . "\r\n";
+                    $headers .= 'Cc: '.$to.'' . "\r\n";
+                    
                     mail($to,$subject,$message,$headers);
-                
+                    echo "<script>alert('Poslali smo Vam link za verifikaciju na mail: '+'$email')</script>";
+                    $_SESSION['ime'] = $ime;                
+                    $_SESSION['prezime'] = $prezime;                
+                    $_SESSION['pol'] = $pol;                
+                    $_SESSION['mesto_rodjenja'] = $mesto_rodjenja;              
+                    $_SESSION['drzava_rodjenja'] = $drzava_rodjenja;              
+                    $_SESSION['datum_rodjenja'] = $datum_rodjenja;              
+                    $_SESSION['jmbg'] = $maticni;              
+                    $_SESSION['telefon'] = $telefon;              
+                    $_SESSION['mail'] = $to;                
+                    $_SESSION['korisnicko_ime'] = $korisnicko_ime;
+                    $_SESSION['lozinka'] = $lozinka;                                           
                 }
             }
         }
@@ -148,21 +145,14 @@
             }
         }
         function create_username($name, $surname){
-            $ishod = true;
-            while($ishod)
-            {
                 $username = "";
-                $a = 1;
                 $name=strtolower($name);
                 $surname=strtolower($surname);
-                for($i=0;$i<$a;$i++){
-                    $username .= $name[$i]; 
-                }
-                $a++;
-                $ishod = username_exists($username);
-                return $ishod;
-            }
-            return $ishod;
+                $username .= $name[0]; 
+                $username .= $surname; 
+                return $username;
+            
+                
         }
         validate_user_registration();
         ?>
