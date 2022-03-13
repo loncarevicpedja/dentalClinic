@@ -48,8 +48,8 @@
         $telefon = $_SESSION["telefon"];
         $email = $_SESSION["mail"];
         $lozinka = $_SESSION["lozinka"];              
-        $username = $_SESSION["korisnicko_ime"]; 
-        function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $email, $lozinka, $username, $slika){
+        $korisnickoIme = $_SESSION["korisnicko_ime"]; 
+        function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $email, $lozinka, $korisnickoIme, $slika){
             $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
 
                
@@ -66,7 +66,7 @@
             } 
 
             $sql = "INSERT INTO zahtevi (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, email, username, lozinka, slika)
-            VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$jmbg', '$telefon', '$email', '$username','$lozinka', '$slika')";
+            VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$jmbg', '$telefon', '$email', '$korisnickoIme','$lozinka', '$slika')";
 
             if ($conn->query($sql) === TRUE) {
                 
@@ -79,7 +79,7 @@
 
 
 
-        create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $email, $lozinka, $username, $slika);
+        create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $email, $lozinka, $korisnickoIme, $slika);
         session_destroy();
         ?>
         <div class="content_verify">

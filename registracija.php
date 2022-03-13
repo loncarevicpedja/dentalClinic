@@ -126,9 +126,9 @@
                 return false;
             }
         }
-        function username_exists($username)
+        function username_exists($korisnickoIme)
         {
-        $query = "SELECT jmbg FROM korisnici WHERE username LIKE '$username'";
+        $query = "SELECT jmbg FROM korisnici WHERE username LIKE '$korisnickoIme'";
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -145,12 +145,12 @@
             }
         }
         function create_username($name, $surname){
-                $username = "";
+                $korisnickoIme = "";
                 $name=strtolower($name);
                 $surname=strtolower($surname);
-                $username .= $name[0]; 
-                $username .= $surname; 
-                return $username;
+                $korisnickoIme .= $name[0]; 
+                $korisnickoIme .= $surname; 
+                return $korisnickoIme;
             
                 
         }
