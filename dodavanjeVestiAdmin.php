@@ -25,12 +25,12 @@
                 </div>
                 <div class="meni">
                     <ul>
-                    <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                    <li><a href="nalsovnaAdmin.php"><p>NASLOVNA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#footer"><p>KONTAKT</p></a></li>
                         
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
@@ -43,7 +43,7 @@
                         </div>
                             <div id="reg_meni" class="reg_meni">
                                 <ul>
-                                    <li class="pregledKorisnika"><a href="">PREGLED ZAHTEVA</a></li>
+                                    <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
                                     <li><a href="prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
                                     <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
                                     <li><a>DODAJ VEST</a></li>
@@ -56,7 +56,28 @@
                 </div>
             </div>
         </div>
+        <div class="content">
+            <div class="contentCenter">
+                <h1>Dodaj vest</h1>
+                <div >
+                    <form class="forma_za_vest" action="" method="POST">
+                    <label for="linkSlike">Unesite link za sliku</label>
+                    <input class="input_slika" type="text" name="linkSlike" placeholder="Unesite link za sliku..." require>
+                    <label for="tekstNaslov">Unesite naslov</label>
+                    <input class="input_slika" type="text" name="tekstNaslov" placeholder="Unesite naslov..." require>
+                    <label for="tekstTekst">Unesite sadrzaj za vest</label>
+                    <input class="input_sadrzaj" type="text" name="tekstTekst" placeholder="Unesite sadrzaj za vest..." require>        
+                    <button type="submit" class="addBtn" name="dodavanjeVesti">Dodaj vest</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
         <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['dodavanjeVesti']))
+        {
+            dodajVest();
+        }
         function dodajVest(){
             $link = $_POST["linkSlike"];
             $naslov = $_POST["tekstNaslov"];
@@ -78,32 +99,13 @@
 
             if ($conn->query($sql) === TRUE) {
                 echo "<script>alert('Uspesno ste dodali vest!')</script>";
-                header('location:dodajVestiAdmin.php');
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
 
             $conn->close();
         }
-        dodajVest();
         ?>
-        <div class="content">
-            <div class="contentCenter">
-                <h1>Dodaj vest</h1>
-                <div >
-                    <form class="forma_za_vest" action="" method="POST">
-                    <label for="linkSlike">Unesite link za sliku</label>
-                    <input class="input_slika" type="text" name="linkSlike" placeholder="Unesite link za sliku...">
-                    <label for="tekstNaslov">Unesite naslov</label>
-                    <input class="input_slika" type="text" name="tekstNaslov" placeholder="Unesite naslov...">
-                    <label for="tekstTekst">Unesite sadrzaj za vest</label>
-                    <input class="input_sadrzaj" type="text" name="tekstTekst" placeholder="Unesite sadrzaj za vest...">
-                    <button type="submit" class="addBtn">Dodaj vest</button>
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <script>
         function openMenu() {
             document.getElementById("reg_meni").classList.toggle("show");

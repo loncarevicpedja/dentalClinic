@@ -25,12 +25,12 @@
                 </div>
                 <div class="meni">
                     <ul>
-                    <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                    <li><a href="nalsovnaAdmin.php"><p>NASLOVNA</p></a></li>
+                        <li><a href="http://localhost/nalsovnaAdmin.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/nalsovnaAdmin.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/nalsovnaAdmin.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/nalsovnaAdmin.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/nalsovnaAdmin.php/#footer"><p>KONTAKT</p></a></li>
                         
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
@@ -45,7 +45,7 @@
                                 <ul>
                                     <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
                                     <li><a href="./prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
-                                    <li><a href="#">KREIRAJ NALOG ZA LEKARA</a></li>
+                                    <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
                                     <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>

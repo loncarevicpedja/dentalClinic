@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    $maticni = $_SESSION["jmbg"];
-    echo "<script>alert('id: '+'$maticni')</script>";
+    // session_start();
+    $maticni = $_POST["jmbg"];
+    echo "<script>alert('id: '+'.$maticni.')</script>";
 
     // $servername = "localhost";
     // $username = "root";

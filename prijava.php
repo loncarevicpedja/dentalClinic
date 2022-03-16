@@ -4,14 +4,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="./prijava.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Document</title>
-    <style>
-        <?php include'prijava.css' ?>
-    </style>
+    
 </head>
 <body>
     <div class="container">
@@ -25,11 +24,11 @@
                 <div class="meni">
                     <ul>
                     <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
                         
                         <li id="prijava"><a href="#"><p>PRIJAVI SE</p></a></li>
                     </ul>
@@ -116,7 +115,6 @@
         <div class="content">
             <form method="POST">
                 <div class="cont">
-
                     <label><b>Tip naloga</b></label><br>
                     <select name="type" id="">
                         <option value="pacijent">Pacijent</option>
