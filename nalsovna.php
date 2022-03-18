@@ -44,7 +44,7 @@
                                 <ul>
                                     <li><a href="#">ZAKAZITE PREGLED</a></li>
                                     <li><a href="#">ISTORIJA BOLESTI</a></li>
-                                    <li><a href="#">INFORMACIJE O NALOGU</a></li>
+                                    <li><a href="promenaLozinkePacijent.php">PROMENA LOZINKE</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>

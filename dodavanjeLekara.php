@@ -143,7 +143,7 @@
         }
         function create_password($name){
             $name = strtolower($name);
-            return $name + "12345";
+            return $name .= "12345";
         }
         function dodajLekara(){
             $ime = $_POST['ime'];
@@ -178,17 +178,16 @@
 
             if ($conn->query($sql) === TRUE) {
                 $to = $email;
-                $subject = "DentalClinic nalog";
-                
+                $subject = "DentalClinic nalog";                
                 $message = "<h3>Vas nalog</h3><br><p>".$korisnickoIme."</p><br><p>".$lozinka."</p>";
-                
-                // Always set content-type when sending HTML email
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 
                 // More headers
                 $headers .= 'From: <cdental909@gmail.com>' . "\r\n";
                 $headers .= 'Cc: '.$to.'' . "\r\n";
+                mail($to,$subject,$message,$headers);
+
                 echo "<script>alert('Uspesno ste dodali lekara!')</script>";
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;

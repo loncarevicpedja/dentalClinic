@@ -158,9 +158,8 @@ align-items: center;
 }
 .content{
     background-image: url("https://belvilledental.com/wp-content/uploads/2019/12/ordinacija-popravka-zuba-stomatolog-asistent-2.jpg");
-    width: 98.5vw;
-    background-repeat: repeat;
-    background-size: cover;
+    width: 100vw;
+    min-height:100vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -172,7 +171,7 @@ align-items: center;
 }
 
 .contentCenter h1{
-    margin-top: 70px;
+    margin-top: 50px;
 }
 .kartica{
     width: 100%;
@@ -246,8 +245,23 @@ align-items: center;
   .addBtn:hover {
     opacity: 1;
   }
-  input[type=text], input[type=password],input[type=date], textarea {
-    width: 95%;
+  .forma_za_promenu_lozinke_div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  .forma_za_promenu_lozinke{
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      gap: 10px;
+  }
+  input[type=text], input[type=password],input[type=date] {
+    width: 100%;
     padding: 15px;
     margin: 5px 0 10px 0;
     display: inline-block;
@@ -255,20 +269,7 @@ align-items: center;
     background: #f1f1f1;
   }
   
-  input[type=text]:focus, input[type=password]:focus, textarea:focus {
+  input[type=text]:focus, input[type=password]:focus {
     background-color: #ddd;
     outline: none;
-  }
-  .forma form{
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-  }
-  .forma{
-      margin-top: 50px;
-  }
-  .raspored{
-      display: flex;
-      flex-direction: column;
-      width: 50%;
   }

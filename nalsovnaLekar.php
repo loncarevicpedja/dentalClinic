@@ -25,19 +25,19 @@
                 </div>
                 <div class="meni">
                     <ul>
-                    <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                    <li><a href="nalsovnaLekar.php"><p>NASLOVNA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#footer"><p>KONTAKT</p></a></li>
                         
-                        <?php if(!isset($_SESSION['email'])) : ?>
+                        <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         <?php else : ?>
                         <div class="meni_i_opcije">
                         <div class="korisnicko_i_dugme">
-                            <li id="prijavljen"><a><p><?php echo $_SESSION['email'];?></p></a></li>
+                            <li id="prijavljen"><a><p><?php echo $_SESSION['zaglavljeEmail'];?></p></a></li>
                             <i onclick="openMenu()" class="fa-solid fa-plus"></i>
                             
                         </div>
@@ -45,8 +45,8 @@
                                 <ul>
                                     <li><a href="#">PRIKAZ PREGLEDA ZAKAZANIH ZA DANAS</a></li>
                                     <li><a href="#">PRIKAZ PACIJENATA</a></li>
-                                    <li><a href="#">INFORMACIJE O NALOGU</a></li>
-                                    <li id="odjava"><a href="./logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i>ODJAVITE SE</a></li>
+                                    <li><a href="promenaLozinkeLekar.php">PROMENA LOZINKE</a></li>
+                                    <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="contetnt">
         <div id="imagee" class="contetnt">
-            <div class="novosti">
+            <div id="novosti" class="novosti">
                 <h1>Poslednje vesti</h1>  
                 <?php
                 $servername = "localhost";
@@ -101,7 +101,7 @@
                 $conn->close();
                 ?>
             </div>
-            <div class="o_nama">
+            <div id="o_nama" class="o_nama">
                 <div class="o_nama_sadrzaj">
                     <div class="o_nama_naslov">
                         <h1>O nama</h1>
@@ -114,7 +114,7 @@
                     <img src="https://www.marcusdblackdds.com/wp-content/uploads/2020/04/difference-between-endodontist-vs-dentist.jpg" alt="">
                 </div>
             </div>
-            <div class="nas_tim">
+            <div id="nas_tim" class="nas_tim">
                 <h1>Naš tim</h1>
                 <div class="kartice_doktor">
                 <?php
@@ -154,7 +154,7 @@
                 
                 </div>  
             </div>
-            <div class="galerija">
+            <div id="galerija" class="galerija">
                 <div class="galerija_naslov">
                     <h1>Galerija</h1>
                 </div>
@@ -190,7 +190,7 @@
 
             </div>
         </div>
-        <div class="footer">
+        <div id="footer" class="footer">
                 <div class="footer_info">
                     <div class="footer_logo_kontakt">
                         <div class="logo2">

@@ -89,6 +89,10 @@
                         $_SESSION['email'] = $row['email'];
                         $_SESSION['lozinka'] = $row['lozinka'];
                         $_SESSION['telefon'] = $row['telefon'];
+                        $_SESSION['korisnicko_ime'] = $row['username'];
+
+                        
+                        
                         echo "<form method='POST'>
                         <div class='kartica'>
                         <img src='".$row["slika"]."' class='profSl'>
@@ -107,7 +111,7 @@
                         <h3>Email:</h3>
                         <p>".$row["email"]."</p>
                         <div class='ikonice'>
-                            <a href='prihvatiZahtev.php' value='".$_SESSION["slika"].$_SESSION["ime"].$_SESSION["prezime"].$_SESSION["pol"].$_SESSION["mesto_rodjenja"].$_SESSION["drzava_rodjenja"].$_SESSION["datum_rodjenja"].$_SESSION["jmbg"].$_SESSION["telefon"].$_SESSION["email"].$_SESSION["lozinka"]."'><i class='fa-regular fa-circle-check'></i></a>
+                            <a href='prihvatiZahtev.php' value='".$_SESSION["slika"].$_SESSION["ime"].$_SESSION["prezime"].$_SESSION["pol"].$_SESSION["mesto_rodjenja"].$_SESSION["drzava_rodjenja"].$_SESSION["datum_rodjenja"].$_SESSION["jmbg"].$_SESSION["telefon"].$_SESSION["email"].$_SESSION['korisnicko_ime'].$_SESSION["lozinka"]."'><i class='fa-regular fa-circle-check'></i></a>
                             <a href='brisiZahtev.php'  value='".$_SESSION["jmbg"]."'><i class='fa-regular fa-circle-xmark'></i></a>
                         </div>
                     </div>

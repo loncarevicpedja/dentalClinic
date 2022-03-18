@@ -49,6 +49,8 @@
         $email = $_SESSION["mail"];
         $lozinka = $_SESSION["lozinka"];              
         $korisnickoIme = $_SESSION["korisnicko_ime"]; 
+        echo "<script>alert('$korinsnickoIme')</script>";
+
         function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $email, $lozinka, $korisnickoIme, $slika){
             $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
 

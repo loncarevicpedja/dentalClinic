@@ -45,20 +45,20 @@
         {
             $errors = [];
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
-                $email = $_POST['email'];
+                $korisnickoIme = $_POST['uname'];
                 $password = $_POST['psw'];
                 $typeUser = $_POST['type'];
-                if (empty($email)) {
+                if (empty($korisnickoIme)) {
                     $errors[] = "Polje za email ne sme da ostane prazno";
                 }
                 if (empty($password)) {
                     $errors[] = "Polje za lozinku ne sme da ostane prazno";
                 }
                 if (empty($errors)) {
-                    $tip = user_login($email, $password);
+                    $tip = user_login($korisnickoIme, $password);
                     if($tip == $typeUser)
                     {
-                        if (user_login($email, $password) !== false) {
+                        if (user_login($korisnickoIme, $password) !== false) {
                             if($typeUser == 'pacijent')
                             {
                                 redirect('nalsovna.php');
@@ -70,7 +70,7 @@
                                 redirect('nalsovnaAdmin.php');
                             }
                         } else {
-                            $errors[] = "Neispravan unos, probajte ponovo!";
+                            echo "<script>alert('Neispravan unos, probajte ponovo!')</script>";
                         }
                     }
                 }
@@ -81,7 +81,7 @@
                 }
             }        
         }
-        function user_login($email, $pass)
+        function user_login($korisnickoIme, $pass)
         {
             $servername = "localhost";
             $username = "root";
@@ -95,12 +95,12 @@
                 die("Connection failed: " . $conn->connect_error);
             } 
             
-            $sql = "SELECT * FROM korisnici WHERE email = '$email'";
+            $sql = "SELECT * FROM korisnici WHERE username = '$korisnickoIme'";
             $result = $conn->query($sql);
             if ($result->num_rows == 1) {
                 $data = $result->fetch_assoc();
                 if (password_verify($pass, $data['lozinka'])) {
-                    $_SESSION['zaglavljeEmail'] = $data['email'];
+                    $_SESSION['zaglavljeEmail'] = $data['username'];
                     return $data['tip'];
                 } else {
                     return false;
@@ -123,7 +123,7 @@
                     </select><br>
 
                     <label for="uname"><b>Korisničko ime</b></label>
-                    <input type="email" placeholder="Unesite korisničko ime" name="email" required>
+                    <input type="text" placeholder="Unesite korisničko ime" name="uname" required>
 
                     <label for="psw"><b>Lozinka</b></label>
                     <input type="password" placeholder="Unesite lozinku" name="psw" required>

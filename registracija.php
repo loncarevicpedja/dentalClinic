@@ -56,7 +56,7 @@
                 $telefon = $_POST['kontakt-telefon'];
                 $email = $_POST['email'];
                 $lozinka = $_POST['psw'];
-                $potvrdjena_lozinka = $_POST['psw-repeat'];
+                $potvrdjena_lozinka = $_POST['psw-repeat'];                
                 $korisnicko_ime = strval(create_username($ime, $prezime));
                 if (strlen($ime) < 3) {
                     $errors[] = "Vase ime ne sme biti krace od 3 karaktera";
@@ -93,6 +93,7 @@
                     
                     mail($to,$subject,$message,$headers);
                     echo "<script>alert('Poslali smo Vam link za verifikaciju na mail: '+'$email')</script>";
+                    $_SESSION['korisnicko_ime'] = $korisnicko_ime;
                     $_SESSION['ime'] = $ime;                
                     $_SESSION['prezime'] = $prezime;                
                     $_SESSION['pol'] = $pol;                
@@ -102,7 +103,6 @@
                     $_SESSION['jmbg'] = $maticni;              
                     $_SESSION['telefon'] = $telefon;              
                     $_SESSION['mail'] = $to;                
-                    $_SESSION['korisnicko_ime'] = $korisnicko_ime;
                     $_SESSION['lozinka'] = $lozinka;                                           
                 }
             }
@@ -145,15 +145,20 @@
             }
         }
         function create_username($name, $surname){
+                $a = 1; 
                 $korisnickoIme = "";
                 $name=strtolower($name);
                 $surname=strtolower($surname);
                 $korisnickoIme .= $name[0]; 
                 $korisnickoIme .= $surname; 
-                return $korisnickoIme;
-            
-                
-        }
+                if(username_exists($korisnickoIme) == true){
+                    while(username_exists($korisnickoIme))                
+                        $korisnickoIme .= strval($a);
+                        $a++;
+                    }
+                    return $korisnickoIme;               
+                }
+        
         validate_user_registration();
         ?>
         <div class="content">
