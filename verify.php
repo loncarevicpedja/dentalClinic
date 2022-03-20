@@ -25,11 +25,11 @@
                     <div class="meni">
                         <ul>
                         <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
                         
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         </ul>
@@ -49,9 +49,9 @@
         $email = $_SESSION["mail"];
         $lozinka = $_SESSION["lozinka"];              
         $korisnickoIme = $_SESSION["korisnicko_ime"]; 
-        echo "<script>alert('$korinsnickoIme')</script>";
+        $izabraniLekar = $_SESSION['izabraniLekar'];                
 
-        function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $email, $lozinka, $korisnickoIme, $slika){
+        function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $izabraniLekar, $email, $lozinka, $korisnickoIme, $slika){
             $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
 
                
@@ -67,8 +67,8 @@
                 die("Connection failed: " . $conn->connect_error);
             } 
 
-            $sql = "INSERT INTO zahtevi (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, email, username, lozinka, slika)
-            VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$jmbg', '$telefon', '$email', '$korisnickoIme','$lozinka', '$slika')";
+            $sql = "INSERT INTO zahtevi (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email, username, lozinka, slika)
+            VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$jmbg', '$telefon', '$izabraniLekar', '$email', '$korisnickoIme','$lozinka', '$slika')";
 
             if ($conn->query($sql) === TRUE) {
                 
@@ -81,7 +81,7 @@
 
 
 
-        create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $email, $lozinka, $korisnickoIme, $slika);
+        create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $izabraniLekar, $email, $lozinka, $korisnickoIme, $slika);
         session_destroy();
         ?>
         <div class="content_verify">

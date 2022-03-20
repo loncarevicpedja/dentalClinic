@@ -42,8 +42,8 @@
                         </div>
                             <div id="reg_meni" class="reg_meni">
                                 <ul>
-                                    <li><a href="#">ZAKAZITE PREGLED</a></li>
-                                    <li><a href="#">ISTORIJA BOLESTI</a></li>
+                                    <li><a href="zakazivanjePregleda.php">ZAKAZITE PREGLED</a></li>
+                                    <li><a href="istorijaBolesti.php">ISTORIJA BOLESTI</a></li>
                                     <li><a href="promenaLozinkePacijent.php">PROMENA LOZINKE</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
@@ -129,7 +129,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                $sql = "SELECT ime, slika FROM doktori";
+                $sql = "SELECT ime, prezime, slika FROM korisnici WHERE tip = 'lekar'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -140,8 +140,7 @@
                             <img src='".$row["slika"]."'> 
                         </div>
                         <div class='doktor_ime'>
-                            <h2>".$row["ime"]."</h2>
-                            <p><a href='#'>Saznajte više</a></p>
+                            <h2>Dr ".$row["ime"]." ".$row['prezime']."</h2>
                         </div>
                     </div>";
                         }

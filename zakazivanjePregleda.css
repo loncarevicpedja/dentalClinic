@@ -1,0 +1,279 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.navbar{
+    height: 60px;
+    overflow: visible !important;
+    background-color: rgb(7, 137, 212);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+}
+.logo{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    background-color: white;
+    padding: 5px 15px 5px 15px;
+    border-radius: 20px;
+}
+.logo_font{
+    font-size: 22px;
+}
+.meni{
+    overflow: visible;
+}
+.meni ul li a{
+    text-decoration: none;
+    color: black;
+    height: 60px;
+    overflow: visible;
+}
+.meni ul li{
+    height: 60px;
+}
+.meni ul li a p{
+    margin-top: 10px;
+    padding: 10px;
+}
+#prijava{
+    background-color: #272626;
+    padding: 15px;
+}
+#prijavljen{
+    background-color: #272626;
+    padding: 15px;
+    width: 266px;
+}
+#prijava a{
+color: white;
+height: 100%;
+margin-top: -7px;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+#prijavljen a{
+color: white;
+height: 100%;
+margin-top: -7px;
+width: 100%;
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+.fa-plus{
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    padding-top: 20px;
+    cursor: pointer;
+    background-color: #272626;
+}
+.fa-plus:hover{
+    background-color: rgb(98, 105, 107);
+    transition: 0.5s;
+}
+.fas{
+    font-size: 22px;
+}
+.reg_meni{
+    background-color: #272626;
+    height: 100vh;
+    width: 305px ;
+    position: absolute;
+    top: 60px;
+    display: none;
+    box-shadow: -10px 0px 28px rgb(43, 42, 42);
+    overflow: hidden;
+}
+.reg_meni ul li a{
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 20px;
+}
+.pregleKorisnika{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.divNumOfNotification{
+    height: 30px;
+    width: 30px;
+    background-color: red;
+    margin: 0 !important;
+    border-radius: 50%;
+    margin-right: -50px;
+}
+.reg_meni ul li:hover{
+    color: white;
+    background-color: rgb(98, 105, 107);
+}
+.show{
+    display: block;    
+    animation-name: example;
+    animation-duration: 1s;
+    animation-direction: alternate;
+}
+.fa-arrow-right-from-bracket{
+    font-size: 23px;
+    margin-left: 145px;
+}
+.zatamni{
+    filter: blur(3px);
+    transition: 1s;
+}
+@keyframes example{
+    0%   {right:-350px;}
+    100%  {right:-1%;}
+}
+.meni_i_opcije{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.reg_meni ul{
+    display: flex;
+    flex-direction: column !important;
+}
+.korisnicko_i_dugme{
+    display: flex;
+    flex-direction: row;
+}
+.meni ul{
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    height: 100%;
+}
+.content{
+    background-image: url("https://belvilledental.com/wp-content/uploads/2019/12/ordinacija-popravka-zuba-stomatolog-asistent-2.jpg");
+    width: 100vw;
+    min-height:100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.contentCenter{
+    width: 70%;
+    background-color: rgb(255, 255, 255); 
+    padding: 20px;  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contentCenter h1{
+    margin-top: 50px;
+}
+.kartica{
+    width: 100%;
+    height: 200px;
+    border: 1px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin-top: 20px;
+}
+.profSl{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}
+.ikonice{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.fa-circle-xmark{
+    font-size: 30px;
+    margin-right: 10px;
+    color: red;
+}
+.fa-circle-check{
+    font-size: 30px;
+    margin-right: 10px;
+    color: rgb(3, 172, 3);
+}
+.input_slika {
+    width: 50%;
+    padding: 15px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  .input_slika:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  .input_sadrzaj {
+    height: 150px;
+    width: 50%;
+    padding: 15px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  .input_sadrzaj:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  .addBtn {
+    background-color: rgb(7, 137, 212);
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+  }
+  
+  .addBtn:hover {
+    opacity: 1;
+  }
+  .forma_za_promenu_lozinke_div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  .forma_za_promenu_lozinke{
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      gap: 10px;
+  }
+  input[type=text], input[type=password],input[type=date], select {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  input[type=text]:focus, input[type=password]:focus, select {
+    background-color: #ddd;
+    outline: none;
+  }

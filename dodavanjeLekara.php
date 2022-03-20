@@ -46,7 +46,7 @@
                                     <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
                                     <li><a href="prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
                                     <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
-                                    <li><a>DODAJ VEST</a></li>
+                                    <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
@@ -179,7 +179,19 @@
             if ($conn->query($sql) === TRUE) {
                 $to = $email;
                 $subject = "DentalClinic nalog";                
-                $message = "<h3>Vas nalog</h3><br><p>".$korisnickoIme."</p><br><p>".$lozinka."</p>";
+                $message = "<div class='card' style='width: 350px; height: 400px; border: 1px solid grey; background-color: rgb(252, 252, 252); overflow: hidden; border-radius: 15px;'>
+                    <div class='card_header' style='width: 100%; height: 50px; background-color: rgb(7, 137, 212); padding-left: 5px;padding-top: 2px;'>
+                        <div class='logo' style='margin-top: 5px; width: 87px; background-color: white; padding: 7px; border-radius: 15px;'><b>dentalClinic</b></div>
+                    </div>
+                    <div class='card_content' style='padding: 10px;'>
+                        <h4>Dobrodosao/la u DentalClinic!<br>Kreiran Vam je nalog od strane administraotra. Mozete se prijaviti sa dole navedenim korisnickoim imenom i lozinkom.<br>Lozinka je genericka i mozete je promeniti.<br></h4>
+                        <h4>Korisnicko ime:</h4>
+                        <h4 style='text-align: center;'>".$korisnickoIme."</h4>
+                        <h4>Lozinka:</h4>
+                        <h4 style='text-align: center;'>".$lozinka."</h4>
+                        <button style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 40%;'><a href='http://localhost/projekat/prijava.php' style='text-decoration: none; color: aliceblue;'>Prijavi se!</a></button>
+                    </div>
+                </div>";
                 $headers = "MIME-Version: 1.0" . "\r\n";
                 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
                 

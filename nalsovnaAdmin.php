@@ -25,7 +25,7 @@
                 </div>
                 <div class="meni">
                     <ul>
-                    <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
+                    <li><a href="nalsovnaAdmin.php"><p>NASLOVNA</p></a></li>
                         <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#novosti"><p>VESTI</p></a></li>
                         <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#o_nama"><p>O NAMA</p></a></li>
                         <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#nas_tim"><p>OSOBLJE</p></a></li>
@@ -46,6 +46,7 @@
                                     <li><a href="./prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
                                     <li><a href="http://localhost/projekat/dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
                                     <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
+                                    <li><a href="napraviRasporedAdmin.php">KREIRAJ RASPORED</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
@@ -130,7 +131,7 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                $sql = "SELECT ime, slika FROM doktori";
+                $sql = "SELECT ime, prezime, slika FROM korisnici WHERE tip = 'lekar'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -141,8 +142,7 @@
                             <img src='".$row["slika"]."'> 
                         </div>
                         <div class='doktor_ime'>
-                            <h2>".$row["ime"]."</h2>
-                            <p><a href='#'>Saznajte više</a></p>
+                            <h2>Dr ".$row["ime"]." ".$row['prezime']."</h2>
                         </div>
                     </div>";
                         }

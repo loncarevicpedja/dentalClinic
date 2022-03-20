@@ -76,7 +76,7 @@
                 }
                 if (!empty($errors)) {
                     foreach ($errors as $error) {
-                        echo '<div class="alert">' . $error . '</div>';
+                        echo "<script>alert('.$error.')</script>";
                     }
                 }
             }        
@@ -129,12 +129,12 @@
                     <input type="password" placeholder="Unesite lozinku" name="psw" required>
                         
                     <input type="submit" name="login-submit" value="Prijavi se"></input>
-                    <div class="registracija">
-                        <p>Niste registrovani?</p>
-                        <button><a href="./registracija.php">Registruj se</a></button>
-                    </div>
                 </div>
             </form>
+            <div class="registracija">
+                <p>Niste registrovani?</p>
+                <button><a href="./registracija.php">Registruj se</a></button>
+            </div>
         </div>
         <div class="footer">
             <div class="footer_copyright">

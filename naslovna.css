@@ -261,6 +261,9 @@ align-items: center;
     text-align: center;
     padding: 10px;
 }
+.doktor_ime h2{
+    margin-top: 20px;
+}
 .doktor_ime p a{
     text-decoration: none;
     color: black;

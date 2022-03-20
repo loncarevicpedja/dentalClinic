@@ -25,12 +25,12 @@
                 </div>
                 <div class="meni">
                     <ul>
-                    <li><a href="nalsovnaAdmin.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#footer"><p>KONTAKT</p></a></li>
+                    <li><a href="nalsovnaLekar.php"><p>NASLOVNA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#footer"><p>KONTAKT</p></a></li>
                         
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
@@ -42,11 +42,10 @@
                             
                         </div>
                             <div id="reg_meni" class="reg_meni">
-                                <ul>
-                                    <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
-                                    <li><a href="prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
-                                    <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
-                                    <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
+                            <ul>
+                                    <li><a href="prikazPacijentaPoDanu.php">PRIKAZ PREGLEDA ZAKAZANIH ZA DANAS</a></li>
+                                    <li><a href="prikazPacijenataLekar.php">PRIKAZ PACIJENATA</a></li>
+                                    <li><a href="promenaLozinkeLekar.php">PROMENA LOZINKE</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
@@ -71,14 +70,22 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 } 
-
-                $sql = "SELECT * FROM korisnici WHERE tip='pacijent'";
+                $doktor=$_SESSION["zaglavljeEmail"];
+                $sql = "SELECT ime, prezime FROM korisnici WHERE username='$doktor'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        $_SESSION['jmbg'] = $row['jmbg'];;
+                    $row = $result->fetch_assoc();
+                    $pom = "";
+                    $pom .= $row['ime'];
+                    $pom .= " ";
+                    $pom .= $row['prezime'];
+
+                    $sqll = "SELECT * FROM korisnici WHERE izabraniLekar='$pom' AND tip='pacijent'";
+                    $resultt = $conn->query($sqll);
+                    while($row = $resultt->fetch_assoc())
+                    {
+                        $_SESSION['jmbg'] = $row['jmbg'];
                         echo "<form method='POST'>
                         <div class='kartica'>
                         <img src='".$row["slika"]."' class='profSl'>

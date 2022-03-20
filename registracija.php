@@ -56,7 +56,8 @@
                 $telefon = $_POST['kontakt-telefon'];
                 $email = $_POST['email'];
                 $lozinka = $_POST['psw'];
-                $potvrdjena_lozinka = $_POST['psw-repeat'];                
+                $potvrdjena_lozinka = $_POST['psw-repeat']; 
+                $izabraniLekar = $_POST['izabraniLekar'];               
                 $korisnicko_ime = strval(create_username($ime, $prezime));
                 if (strlen($ime) < 3) {
                     $errors[] = "Vase ime ne sme biti krace od 3 karaktera";
@@ -79,9 +80,18 @@
                     }
                 } else {
                     $to = $email;
-                    $subject = "HTML email";
+                    $subject = "DentalClinic";
                     
-                    $message = "<a href='http://localhost/projekat/verify.php'>Verifikacija naloga</a>";
+                    $message = "<div class='card' style=' border: 1px solid grey;width: 340px; height: 200px; background-color: rgb(252, 252, 252); overflow: hidden; border-radius: 15px;'>
+                        <div class='card_header' style='width: 100%; height: 50px; background-color: rgb(7, 137, 212); padding-left: 5px;padding-top: 2px;'>
+                        <div class='logo' style='margin-top: 5px; width: 85px; background-color: white; padding: 7px; border-radius: 15px;'><b>dentalClinic</b></div>
+
+                        </div>
+                        <div class='card_content' style='padding: 10px;'>
+                            <h4>Dobrodosao/la u DentalClinic!<br>Zahtev za registraciju mozes izvrsiti klikom na dugme ispod!</h4>
+                            <button style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='http://localhost/projekat/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></button>
+                        </div>
+                    </div>";
                     
                     // Always set content-type when sending HTML email
                     $headers = "MIME-Version: 1.0" . "\r\n";
@@ -103,6 +113,7 @@
                     $_SESSION['jmbg'] = $maticni;              
                     $_SESSION['telefon'] = $telefon;              
                     $_SESSION['mail'] = $to;                
+                    $_SESSION['izabraniLekar'] = $izabraniLekar;                
                     $_SESSION['lozinka'] = $lozinka;                                           
                 }
             }
@@ -192,15 +203,41 @@
                     
                     <label for="telefon"><b>Kontakt telefon</b></label>
                     <input type="text" placeholder="Unesite kontakt telefon" name="kontakt-telefon" id="kontakt-telefon" required>
-                    
+                    <?php 
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbname = "proba";
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT jmbg, ime, prezime FROM korisnici WHERE tip='lekar'";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        
+                    echo "<label for='izabraniLekar'><b>Izabrani lekar</b></label>                        
+                        <select id='izabraniLekar' name='izabraniLekar'>";
+                        while($row = $result->fetch_assoc()) {
+                                    echo"<option value='".$row['ime']." ".$row['prezime']."'>Dr ".$row['ime']." ".$row['prezime']."</option>";
+                        }
+                        echo "</select>";
+                    } else {
+                        echo "0 results";
+                    }
+                    $conn->close();
+                    ?>
                     <label for="email"><b>Email</b></label>
                     <input type="text" placeholder="Unesite Email" name="email" id="email" required>
 
                     <label for="psw"><b>Lozinka</b></label>
-                    <input type="password" placeholder="Unesite lozinku" name="psw" id="psw" required>
+                    <input id="psw" type="password" placeholder="Unesite lozinku" name="psw" required>
 
                     <label for="psw-repeat"><b>Potvrda lozinke</b></label>
-                    <input type="password" placeholder="Potvrdite lozinku" name="psw-repeat" id="psw-repeat" required>
+                    <input id="psw-repeat" type="password" placeholder="Potvrdite lozinku" name="psw-repeat" required>
+                    <input type="checkbox" onclick="showPasswords()">Prikazi lozinke
 
                     <hr>
                     <button type="submit" class="registerbtn">Register</button>
@@ -258,5 +295,19 @@
                 </div>
         </div>
     </div>
+    <script>
+        function showPasswords(){
+            showPassword("psw")
+            showPassword("psw-repeat")
+        }
+        function showPassword(id) {
+            var x = document.getElementById(id);
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>

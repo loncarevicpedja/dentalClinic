@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Dental clinic</title>
     <style>
-        <?php include'promenaLozinke.css';?>
+        <?php include'prikazPacijentaPoDanu.css';?>
     </style>
 </head>
 <body>
@@ -57,84 +57,81 @@
         </div>
         <div class="content">
             <div class="contentCenter">
-                <h1>Promena lozinke</h1>
-                <div class="forma_za_promenu_lozinke_div" >
-                    <form class="forma_za_promenu_lozinke" action="" method="POST">
-                        <label for="trLozinka">Unesite trenutnu lozinku</label>
-                        <input id="input_lozinka1" class="input_lozinka" type="password" name="trLozinka" placeholder="Unesite trenutnu lozinku..." require>
-                        <label for="nLozinka">Unesite novu lozinku</label>
-                        <input id="input_lozinka2" class="input_lozinka" type="password" name="nLozinka" placeholder="Unesite novu lozinku..." require>
-                        <label for="nLozinkaPotvrda">Potvrdite novu lozinku</label>
-                        <input id="input_lozinka3" class="input_lozinka" type="password" name="nLozinkaPotvrda" placeholder="Potvrdite novu lozinku..." require>        
-                        <input type="checkbox" onclick="showPasswords()">Prikazi lozinke
-                        <button type="submit" class="addBtn" name="promenaLozinke">Promeni lozinku</button>
+                <h1>Prikaz pacijenta po danu</h1>
+                <div class="forma_div" >
+                    <form class="forma" action="" method="POST">
+                        <input name="datum" type="date" value="<?php echo date('Y-m-d'); ?>" />
+                        <button type="submit" class="addBtn" name="prikazi">Prikazi</button>
+        <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['prikazi']))
+        {
+            prikaziPacijente();
+        }
+        function prikaziPacijente(){
+            $vreme = $_POST['datum'];
+            $lekar = $_SESSION['zaglavljeEmail'];
+            
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbname = "proba";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                } 
+                $korisnickoIme=$_SESSION["zaglavljeEmail"];
+                $ddatum = $_POST['datum'];
+                $sql = "SELECT pacijent, vreme FROM rezervacije WHERE statusTermina='rezervisan' AND datum = '$ddatum'";
+                $result = $conn->query($sql);
+
+                    while($row = $result->fetch_assoc())
+                    {   echo "<h3>Zakazano vreme:</h3>
+                        <p>".$row["vreme"]."</p>";
+                        $pacijent = $row['pacijent'];
+                        $sqll = "SELECT *    FROM korisnici WHERE username = '$pacijent'";
+                        $resultt = $conn->query($sqll);
+                        if ($result->num_rows > 0) {
+                            $row = $resultt->fetch_assoc();
+
+                            echo "<form method='POST'>
+                                <div class='kartica'>
+                                <img src='".$row["slika"]."' class='profSl'>
+                                <h3>Ime:</h3>
+                                <p>".$row["ime"]."</p>
+                                <h3>Prezime:</h3>
+                                <p>".$row["prezime"]."</p>
+                                <h3>Pol:</h3>
+                                <p>".$row["pol"]."</p>
+                                <h3>Mesto rodjenja:</h3>
+                                <p>".$row["mesto_rodjenja"].", ".$row["drzava_rodjenja"]."</p>
+                                <h3>Datum rodjenja:</h3>
+                                <p>".$row["datum_rodjenja"]."</p>
+                                <h3>JMBG:</h3>
+                                <p>".$row["jmbg"]."</p>
+                                <h3>Email:</h3>
+                                <p>".$row["email"]."</p>";
+                                $_SESSION["jmbg"]=$row["jmbg"];
+                                echo" <div class='ikonice'>
+                                    <a href='pregled.php'  value='".$_SESSION["jmbg"]."'><p>Zapocni pregled</p></a>
+                                </div>
+                            </div>
+                        </form>";
+                            }
+                        
+                                              
+                                                
+                    }
+                $conn->close();
+            }
+        ?>
                 </form>
                 </div>
             </div>
         </div>
     </div>
-        <?php
-        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['promenaLozinke']))
-        {
-            promeniLozinku();
-        }
-        function promeniLozinku(){
-            $trLozinka = $_POST["trLozinka"];
-            $nLozinka = $_POST["nLozinka"];
-            $nLozinkaPotvrda = $_POST["nLozinkaPotvrda"];
-            $korisnickoIme = $_SESSION['zaglavljeEmail'];
-            
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "proba";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            } 
-
-            $sql = "SELECT * FROM korisnici WHERE username = '$korisnickoIme'";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                if(password_verify($trLozinka, $row['lozinka']) )
-                {
-                    if($trLozinka != $nLozinka && $trLozinka !=$nLozinkaPotvrda){
-
-                        if($nLozinka == $nLozinkaPotvrda)
-                        {
-                            $nLozinkaHash = password_hash($nLozinka, PASSWORD_DEFAULT);
-                            $sql = "UPDATE korisnici SET lozinka='$nLozinkaHash' WHERE username='$korisnickoIme'";
-    
-                            if ($conn->query($sql) === TRUE) {
-                                echo "<script>alert('Uspesno ste izmenili lozinku!')</script>";
-                            } else {
-                                echo "<script>alert('Neuspesna izmena lozinke!')</script>";
-                            }
-                        }
-                        else{
-                            echo "<script>alert('Nova lozinka se razlikuje od potvrdjene!')</script>";
-                        }
-                    }
-                    else{
-                    echo "<script>alert('Neispravno unesena trnutna lozinka')</script>";
-                    }
-                }
-                else{
-                echo "<script>alert('Nova lozinka se mora razlikovati od trenutne!')</script>";
-                }
-
-
-                
-            }
-            $conn->close();
-
-         }
-            
-        ?>
     <script>
         function openMenu() {
             document.getElementById("reg_meni").classList.toggle("show");

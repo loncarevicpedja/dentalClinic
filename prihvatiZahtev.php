@@ -12,6 +12,7 @@ $telefon = $_SESSION["telefon"];
 $email = $_SESSION["email"];
 $lozinka = $_SESSION["lozinka"];
 $korisnickoIme = $_SESSION["korisnicko_ime"]; 
+$izabarniLekar = $_SESSION["izabraniLekar"];
 
 $servername = "localhost";
 $username = "root";
@@ -25,8 +26,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO korisnici (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, email,username, lozinka, slika, tip)
-VALUES ('$ime', '$prezime', '$pol', '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodnjenja', '$jmbg', '$telefon', '$email', '$korisnickoIme', '$lozinka', '$slika', 'pacijent')";
+$sql = "INSERT INTO korisnici (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email,username, lozinka, slika, tip)
+VALUES ('$ime', '$prezime', '$pol', '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodnjenja', '$jmbg', '$telefon', '$izabarniLekar','$email', '$korisnickoIme', '$lozinka', '$slika', 'pacijent')";
 
 if ($conn->query($sql) === TRUE) {
     include'brisiZahtev.php';    
