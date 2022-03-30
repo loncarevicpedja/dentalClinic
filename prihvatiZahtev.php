@@ -14,10 +14,10 @@ $lozinka = $_SESSION["lozinka"];
 $korisnickoIme = $_SESSION["korisnicko_ime"]; 
 $izabarniLekar = $_SESSION["izabraniLekar"];
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "proba";
+$servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

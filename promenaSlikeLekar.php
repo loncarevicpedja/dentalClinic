@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
-        <?php include'promenaLozinke.css';?>
+        <?php include'promenaSlike.css';?>
     </style>
 </head>
 <body>
@@ -63,102 +63,52 @@
         </div>
         <div class="content">
             <div class="contentCenter">
-                <h1>Promena lozinke</h1>
+                <h1>Promena profilne fotografije</h1>
                 <div class="forma_za_promenu_lozinke_div" >
                     <form class="forma_za_promenu_lozinke" action="" method="POST">
-                        <label for="trLozinka">Unesite trenutnu lozinku</label>
-                        <input id="input_lozinka1" class="input_lozinka" type="password" name="trLozinka" placeholder="Unesite trenutnu lozinku..." require>
-                        <label for="nLozinka">Unesite novu lozinku</label>
-                        <input id="input_lozinka2" class="input_lozinka" type="password" name="nLozinka" placeholder="Unesite novu lozinku..." require>
-                        <label for="nLozinkaPotvrda">Potvrdite novu lozinku</label>
-                        <input id="input_lozinka3" class="input_lozinka" type="password" name="nLozinkaPotvrda" placeholder="Potvrdite novu lozinku..." require>        
-                        <input type="checkbox" onclick="showPasswords()">Prikazi lozinke
-                        <button type="submit" class="addBtn" name="promenaLozinke">Promeni lozinku</button>
+                        <label for="nLozinkaPotvrda">Odaberite novu sliku:</label>
+                        <input id="input_lozinka3" class="input_lozinka" type="file" accept="image/png, image/jpeg" name="novaSlika" placeholder="Odaberite novu fotografiju..." require>        
+                        <button type="submit" class="addBtn" name="promenaSlike">Promeni fotografiju</button>
                 </form>
                 </div>
             </div>
         </div>
     </div>
         <?php
-        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['promenaLozinke']))
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['promenaSlike']))
         {
-            promeniLozinku();
+            promeniSliku();
         }
-        function promeniLozinku(){
-            $trLozinka = $_POST["trLozinka"];
-            $nLozinka = $_POST["nLozinka"];
-            $nLozinkaPotvrda = $_POST["nLozinkaPotvrda"];
+        function promeniSliku(){
+            $slika = $_POST["novaSlika"];
             $korisnickoIme = $_SESSION['zaglavljeEmail'];
-            
             $servername = "sql201.epizy.com";
     $username = "epiz_31340445";
     $password = "elBHhIDkeDNVE";
     $dbname = "epiz_31340445_dentalclinic";
 
             $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
             if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             } 
 
-            $sql = "SELECT * FROM korisnici WHERE username = '$korisnickoIme'";
-            $result = $conn->query($sql);
+            $sql = "UPDATE korisnici SET slika='$slika' WHERE username ='$korisnickoIme'";
 
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                if(password_verify($trLozinka, $row['lozinka']) )
-                {
-                    if($trLozinka != $nLozinka && $trLozinka !=$nLozinkaPotvrda){
+            if ($conn->query($sql) === TRUE) {
+                echo "<script>alert('Uspesno ste promenili profilnu fotografiju!')</script>";
+            } else {
+                echo "<script>alert('Neuspesna promena profilne fotografije!')</script>";
 
-                        if($nLozinka == $nLozinkaPotvrda)
-                        {
-                            $nLozinkaHash = password_hash($nLozinka, PASSWORD_DEFAULT);
-                            $sql = "UPDATE korisnici SET lozinka='$nLozinkaHash' WHERE username='$korisnickoIme'";
-    
-                            if ($conn->query($sql) === TRUE) {
-                                echo "<script>alert('Uspesno ste izmenili lozinku!')</script>";
-                            } else {
-                                echo "<script>alert('Neuspesna izmena lozinke!')</script>";
-                            }
-                        }
-                        else{
-                            echo "<script>alert('Nova lozinka se razlikuje od potvrdjene!')</script>";
-                        }
-                    }
-                    else{
-                    echo "<script>alert('Neispravno unesena trnutna lozinka')</script>";
-                    }
-                }
-                else{
-                echo "<script>alert('Nova lozinka se mora razlikovati od trenutne!')</script>";
-                }
-
-
-                
             }
-            $conn->close();
 
-         }
-            
-        ?>
+            $conn->close();
+        }
+                    ?>
     <script>
         function openMenu() {
             document.getElementById("reg_meni").classList.toggle("show");
             document.getElementById("imagee").classList.toggle("zatamni");
         }
-        function showPasswords(){
-            showPassword("input_lozinka1")
-            showPassword("input_lozinka2")
-            showPassword("input_lozinka3")
-        }
-        function showPassword(id) {
-            var x = document.getElementById(id);
-            if (x.type === "password") {
-              x.type = "text";
-            } else {
-              x.type = "password";
-            }
-}
     </script>
 </body>
 </html>

@@ -3,10 +3,10 @@
     $maticni = $_SESSION["jmbg"];
     echo "<script>alert('Obrisali ste zahtev za korisnika!')</script>";
 
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "proba";
+    $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

@@ -1,10 +1,10 @@
 <?php
     session_start();
     $maticni = $_SESSION["jmbg"];
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "proba";
+    $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

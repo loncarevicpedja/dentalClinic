@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
-        <?php include'promenaLozinke.css';?>
+        <?php include'posaljiPorukuPacijentima.css';?>
     </style>
 </head>
 <body>
@@ -63,31 +63,24 @@
         </div>
         <div class="content">
             <div class="contentCenter">
-                <h1>Promena lozinke</h1>
+                <h1>Posaljite poruku pacijentima</h1>
                 <div class="forma_za_promenu_lozinke_div" >
                     <form class="forma_za_promenu_lozinke" action="" method="POST">
-                        <label for="trLozinka">Unesite trenutnu lozinku</label>
-                        <input id="input_lozinka1" class="input_lozinka" type="password" name="trLozinka" placeholder="Unesite trenutnu lozinku..." require>
-                        <label for="nLozinka">Unesite novu lozinku</label>
-                        <input id="input_lozinka2" class="input_lozinka" type="password" name="nLozinka" placeholder="Unesite novu lozinku..." require>
-                        <label for="nLozinkaPotvrda">Potvrdite novu lozinku</label>
-                        <input id="input_lozinka3" class="input_lozinka" type="password" name="nLozinkaPotvrda" placeholder="Potvrdite novu lozinku..." require>        
-                        <input type="checkbox" onclick="showPasswords()">Prikazi lozinke
-                        <button type="submit" class="addBtn" name="promenaLozinke">Promeni lozinku</button>
+                        <label for="trLozinka">Poruka</label>
+                        <textarea id="input_lozinka1" class="input_lozinka" type="text" name="poruka" placeholder="Unesite poruku..." require></textarea>
+                        <button type="submit" class="addBtn" name="posaljiPoruku">Posalji poruku</button>
                 </form>
                 </div>
             </div>
         </div>
     </div>
         <?php
-        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['promenaLozinke']))
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['posaljiPoruku']))
         {
-            promeniLozinku();
+            posaljiPoruku();
         }
-        function promeniLozinku(){
-            $trLozinka = $_POST["trLozinka"];
-            $nLozinka = $_POST["nLozinka"];
-            $nLozinkaPotvrda = $_POST["nLozinkaPotvrda"];
+        function posaljiPoruku(){
+            $poruka = $_POST["poruka"];
             $korisnickoIme = $_SESSION['zaglavljeEmail'];
             
             $servername = "sql201.epizy.com";
@@ -106,36 +99,48 @@
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
-                if(password_verify($trLozinka, $row['lozinka']) )
-                {
-                    if($trLozinka != $nLozinka && $trLozinka !=$nLozinkaPotvrda){
+                $docinMejl = $row['email'];
+                $doca = "";
+                $doca .= $row['ime'];
+                $doca .= " ";
+                $doca .= $row['prezime'];
 
-                        if($nLozinka == $nLozinkaPotvrda)
-                        {
-                            $nLozinkaHash = password_hash($nLozinka, PASSWORD_DEFAULT);
-                            $sql = "UPDATE korisnici SET lozinka='$nLozinkaHash' WHERE username='$korisnickoIme'";
-    
-                            if ($conn->query($sql) === TRUE) {
-                                echo "<script>alert('Uspesno ste izmenili lozinku!')</script>";
-                            } else {
-                                echo "<script>alert('Neuspesna izmena lozinke!')</script>";
-                            }
-                        }
-                        else{
-                            echo "<script>alert('Nova lozinka se razlikuje od potvrdjene!')</script>";
-                        }
+                $sqll = "SELECT email FROM korisnici WHERE izabraniLekar='$doca' AND tip='pacijent'";
+                    $resultt = $conn->query($sqll);
+                    while($row = $resultt->fetch_assoc())
+                    {
+                        $mejl = $row['email'];
+                        $to = $mejl;
+                        $subject = "Obavestenje od Vaseg izabranog lekara";                
+                        $message = "<div class='card' style='width: 350px; border: 1px solid grey; background-color: rgb(252, 252, 252); overflow: hidden; border-radius: 15px;'>
+                            <div class='card_header' style='width: 100%; height: 50px; background-color: rgb(7, 137, 212); padding-left: 5px;padding-top: 2px;'>
+                                <div class='logo' style='margin-top: 5px; width: 87px; background-color: white; padding: 7px; border-radius: 15px;'><b>dentalClinic</b></div>
+                            </div>
+                            <div class='card_content' style='padding: 10px;'>
+                                <h4>".$poruka."</h4><br>
+                                <h4>Dr ".$doca."</h4>
+                            </div>
+                        </div>";
+                        $headers = "MIME-Version: 1.0" . "\r\n";
+                        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+                        // More headers
+                        $headers .= 'From: <cdental909@gmail.com>' . "\r\n";
+                        $headers .= 'Cc: '.$to.'' . "\r\n";
+                        mail($to,$subject,$message,$headers);
+
+                        echo "<script>alert('Uspesno poslali poruku svojim pacijentima!')</script>";
+                
                     }
-                    else{
-                    echo "<script>alert('Neispravno unesena trnutna lozinka')</script>";
-                    }
+
                 }
                 else{
-                echo "<script>alert('Nova lozinka se mora razlikovati od trenutne!')</script>";
+                echo "<script>alert('Doslo je do greske!')</script>";
                 }
 
 
                 
-            }
+            
             $conn->close();
 
          }
@@ -146,19 +151,6 @@
             document.getElementById("reg_meni").classList.toggle("show");
             document.getElementById("imagee").classList.toggle("zatamni");
         }
-        function showPasswords(){
-            showPassword("input_lozinka1")
-            showPassword("input_lozinka2")
-            showPassword("input_lozinka3")
-        }
-        function showPassword(id) {
-            var x = document.getElementById(id);
-            if (x.type === "password") {
-              x.type = "text";
-            } else {
-              x.type = "password";
-            }
-}
     </script>
 </body>
 </html>

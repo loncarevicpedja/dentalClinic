@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <title>Document</title>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
+    <title>Dental clinic</title>
     <style>
         <?php include'registracija.css'?>
     </style>
@@ -76,33 +77,9 @@
                 }
                 if (!empty($errors)) {
                     foreach ($errors as $error) {
-                        echo '<div class="alert">' . $error . '</div>';
+                    echo "<script>alert('".$error."')</script>";
                     }
                 } else {
-                    $to = $email;
-                    $subject = "DentalClinic";
-                    
-                    $message = "<div class='card' style=' border: 1px solid grey;width: 340px; height: 200px; background-color: rgb(252, 252, 252); overflow: hidden; border-radius: 15px;'>
-                        <div class='card_header' style='width: 100%; height: 50px; background-color: rgb(7, 137, 212); padding-left: 5px;padding-top: 2px;'>
-                        <div class='logo' style='margin-top: 5px; width: 85px; background-color: white; padding: 7px; border-radius: 15px;'><b>dentalClinic</b></div>
-
-                        </div>
-                        <div class='card_content' style='padding: 10px;'>
-                            <h4>Dobrodosao/la u DentalClinic!<br>Zahtev za registraciju mozes izvrsiti klikom na dugme ispod!</h4>
-                            <button style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='http://localhost/projekat/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></button>
-                        </div>
-                    </div>";
-                    
-                    // Always set content-type when sending HTML email
-                    $headers = "MIME-Version: 1.0" . "\r\n";
-                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-                    
-                    // More headers
-                    $headers .= 'From: <cdental909@gmail.com>' . "\r\n";
-                    $headers .= 'Cc: '.$to.'' . "\r\n";
-                    
-                    mail($to,$subject,$message,$headers);
-                    echo "<script>alert('Poslali smo Vam link za verifikaciju na mail: '+'$email')</script>";
                     $_SESSION['korisnicko_ime'] = $korisnicko_ime;
                     $_SESSION['ime'] = $ime;                
                     $_SESSION['prezime'] = $prezime;                
@@ -112,9 +89,34 @@
                     $_SESSION['datum_rodjenja'] = $datum_rodjenja;              
                     $_SESSION['jmbg'] = $maticni;              
                     $_SESSION['telefon'] = $telefon;              
-                    $_SESSION['mail'] = $to;                
                     $_SESSION['izabraniLekar'] = $izabraniLekar;                
                     $_SESSION['lozinka'] = $lozinka;                                           
+                    $to = $email;
+                    $_SESSION['mail'] = $to;                
+                    $subject = "DentalClinic";
+                    
+                    $message = "<div class='card' style=' border: 1px solid grey;width: 340px; height: 200px; background-color: rgb(252, 252, 252); overflow: hidden; border-radius: 15px;'>
+                        <div class='card_header' style='width: 100%; height: 50px; background-color: rgb(7, 137, 212); padding-left: 5px;padding-top: 2px;'>
+                        <div class='logo' style='margin-top: 5px; width: 85px; background-color: white; padding: 7px; border-radius: 15px;'><b>dentalClinic</b></div>
+    
+                        </div>
+                        <div class='card_content' style='padding: 10px;'>
+                            <h4>Dobrodosao/la u DentalClinic!<br>Zahtev za registraciju mozes izvrsiti klikom na dugme ispod!</h4>
+                            <button value='".$_SESSION['korisnicko_ime'].$_SESSION['ime'].$_SESSION['prezime'].$_SESSION['pol'].$_SESSION['mesto_rodjenja'].$_SESSION['drzava_rodjenja'].$_SESSION['datum_rodjenja'].$_SESSION['jmbg'].$_SESSION['telefon'].$_SESSION['mail'].$_SESSION['izabraniLekar'].$_SESSION['lozinka']."' style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='http://localhost/projekat/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></button>
+                        </div>
+                    </div>";
+                    $url = "<p>http://".$_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]). /verify.php</p>";
+                    
+                    // Always set content-type when sending HTML email
+                    $headers = "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+                    
+                    // More headers
+                    $headers .= 'From: <cdental909@gmail.com>' . "\r\n";
+                    $headers .= 'Cc: '.$to.'' . "\r\n";
+                    
+                    mail($to,$subject,$url,$headers);
+                    echo "<script>alert('Poslali smo Vam link za verifikaciju na mail: '+'$email')</script>";
                 }
             }
         }
@@ -122,11 +124,10 @@
         {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "proba";
-
+        $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         
@@ -140,10 +141,10 @@
         function username_exists($korisnickoIme)
         {
         $query = "SELECT jmbg FROM korisnici WHERE username LIKE '$korisnickoIme'";
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "proba";
+        $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -204,10 +205,10 @@
                     <label for="telefon"><b>Kontakt telefon</b></label>
                     <input type="text" placeholder="Unesite kontakt telefon" name="kontakt-telefon" id="kontakt-telefon" required>
                     <?php 
-                    $servername = "localhost";
-                    $username = "root";
-                    $password = "";
-                    $dbname = "proba";
+                    $servername = "sql201.epizy.com";
+                    $username = "epiz_31340445";
+                    $password = "elBHhIDkeDNVE";
+                    $dbname = "epiz_31340445_dentalclinic";
                     $conn = new mysqli($servername, $username, $password, $dbname);
                     // Check connection
                     if ($conn->connect_error) {

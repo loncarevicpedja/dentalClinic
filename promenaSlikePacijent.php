@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
-        <?php include'istorijaBolesti.css';?>
+        <?php include'promenaSlike.css';?>
     </style>
 </head>
 <body>
@@ -61,58 +61,51 @@
         </div>
         <div class="content">
             <div class="contentCenter">
-                <form method="POST">
-                <h1>Istorija bolesti</h1><br>
-                <?php
-                $servername = "sql201.epizy.com";
-                $username = "epiz_31340445";
-                $password = "elBHhIDkeDNVE";
-                $dbname = "epiz_31340445_dentalclinic";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                } 
-                $korisnickoIme=$_SESSION["zaglavljeEmail"];
-                $sql = "SELECT * FROM kartoni WHERE pacijent = '$korisnickoIme'";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                                                
-                        echo "<form method='POST'>
-                        <div class='kartica'>
-                        <h3>Dijagnoza:</h3>
-                        <p>".$row["dijagnoza"]."</p>
-                        <h3>Anamneza:</h3>
-                        <p>".$row["anamneza"]."</p>
-                        <h3>Status:</h3>
-                        <p>".$row["statusP"]."</p>
-                        <h3>Terapija:</h3>
-                        <p>".$row["terapija"]."</p>
-                        <h3>Napomena:</h3>
-                        <p>".$row["napomena"]."</p>
-                    </div><hr>
-                </form>";
-                    }
-                } else {
-                    echo "Nemate istoriju bolesti!";
-                }
-                $conn->close();
-                ?>
+                <h1>Promena profilne fotografije</h1>
+                <div class="forma_za_promenu_lozinke_div" >
+                    <form class="forma_za_promenu_lozinke" action="" method="POST">
+                        <label for="nLozinkaPotvrda">Odaberite novu sliku:</label>
+                        <input id="input_lozinka3" class="input_lozinka" type="file" accept="image/png, image/jpeg" name="novaSlika" placeholder="Odaberite novu fotografiju..." require>        
+                        <button type="submit" class="addBtn" name="promenaSlike">Promeni fotografiju</button>
+                </form>
+                </div>
             </div>
-           </from> 
         </div>
     </div>
+        <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['promenaSlike']))
+        {
+            promeniSliku();
+        }
+        function promeniSliku(){
+            $slika = $_POST["novaSlika"];
+            $korisnickoIme = $_SESSION['zaglavljeEmail'];
+            $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
+            $sql = "UPDATE korisnici SET slika='$slika' WHERE username ='$korisnickoIme'";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "<script>alert('Uspesno ste promenili profilnu fotografiju!')</script>";
+            } else {
+                echo "<script>alert('Neuspesna promena profilne fotografije!')</script>";
+            }
+
+            $conn->close();
+        }
+                    ?>
     <script>
         function openMenu() {
             document.getElementById("reg_meni").classList.toggle("show");
             document.getElementById("imagee").classList.toggle("zatamni");
         }
-        
     </script>
 </body>
 </html>

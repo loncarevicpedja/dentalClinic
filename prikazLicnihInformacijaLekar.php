@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
-        <?php include'zahteviAdmin.css';?>
+        <?php include'promenaSlike.css';?>
     </style>
 </head>
 <body>
@@ -26,12 +26,12 @@
                 </div>
                 <div class="meni">
                     <ul>
-                    <li><a href="nalsovnaAdmin.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#footer"><p>KONTAKT</p></a></li>
+                    <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="http://localhost/projekat/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
                         
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
@@ -43,11 +43,15 @@
                             
                         </div>
                             <div id="reg_meni" class="reg_meni">
-                                <ul>
-                                    <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
-                                    <li><a href="prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
-                                    <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
-                                    <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
+                            <ul>
+                                    <li><a href="prikazLicnihInformacijaLekar.php">PRIKAZ LICNIH INFORMACIJA</a></li>
+                                    <li><a href="prikazPacijentaPoDanu.php">PRIKAZ PREGLEDA ZAKAZANIH ZA DANAS</a></li>
+                                    <li><a href="prikazPacijenataLekar.php">PRIKAZ PACIJENATA</a></li>
+                                    <li><a href="posaljiPorukuPacijentima.php">POSALJI PORUKU PACIJENTIMA</a></li>
+                                    <li><a href="posaljiPorukuAdminu.php">POSALJI PORUKU ADMINISTRATORU</a></li>
+                                    <li><a href="promenaSlikeLekar.php">PROMENA PROFILNE SLIKE</a></li>
+                                    <li><a href="promenaLozinkeLekar.php">PROMENA LOZINKE</a></li>
+                                    <li><a href="prikazRasporedaLekar.php">RASPORED RADA</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
@@ -59,12 +63,13 @@
         </div>
         <div class="content">
             <div class="contentCenter">
-                <h1>Prikaz korisnika</h1>
+                <h1>Licne informacije</h1>
                 <?php
+                $korisnickoIme = $_SESSION['zaglavljeEmail'];
                 $servername = "sql201.epizy.com";
-                $username = "epiz_31340445";
-                $password = "elBHhIDkeDNVE";
-                $dbname = "epiz_31340445_dentalclinic";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -73,14 +78,13 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
 
-                $sql = "SELECT * FROM korisnici WHERE tip='pacijent'";
+                $sql = "SELECT * FROM korisnici WHERE username='$korisnickoIme'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     // output data of each row
                     while($row = $result->fetch_assoc()) {
-                        $_SESSION['jmbg'] = $row['jmbg'];;
-                        echo "<form method='POST'>
+                       echo "<form method='POST'>
                         <div class='kartica'>
                         <img src='".$row["slika"]."' class='profSl'>
                         <h3>Ime:</h3>
@@ -89,26 +93,26 @@
                         <p>".$row["prezime"]."</p>
                         <h3>Pol:</h3>
                         <p>".$row["pol"]."</p>
+                        <h3>JMBG:</h3>
+                        <p>".$row["jmbg"]."</p>
                         <h3>Mesto rodjenja:</h3>
                         <p>".$row["mesto_rodjenja"].", ".$row["drzava_rodjenja"]."</p>
                         <h3>Datum rodjenja:</h3>
                         <p>".$row["datum_rodjenja"]."</p>
-                        <h3>JMBG:</h3>
-                        <p>".$row["jmbg"]."</p>
+                        <h3>Telefon:</h3>
+                        <p>".$row["telefon"]."</p>
+                        <h3>Korisnicko ime:</h3>
+                        <p>".$row["username"]."</p>
                         <h3>Email:</h3>
                         <p>".$row["email"]."</p>
-                        <div class='ikonice'>
-                            <a href='brisiKorisnika.php'  value='".$_SESSION["jmbg"]."'><i class='fa-regular fa-circle-xmark'></i></a>
-                        </div>
                     </div>
                 </form>";
                     }
                 } else {
-                    echo "Jos nema registrovanih korisnika!";
+                    echo "Doslo je do greske!";
                 }
                 $conn->close();
                 ?>
-                
             </div>
         </div>
     </div>

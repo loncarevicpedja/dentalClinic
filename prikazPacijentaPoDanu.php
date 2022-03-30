@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
         <?php include'prikazPacijentaPoDanu.css';?>
@@ -42,10 +43,15 @@
                             
                         </div>
                         <div id="reg_meni" class="reg_meni">
-                                <ul>
+                        <ul>
+                                    <li><a href="prikazLicnihInformacijaLekar.php">PRIKAZ LICNIH INFORMACIJA</a></li>
                                     <li><a href="prikazPacijentaPoDanu.php">PRIKAZ PREGLEDA ZAKAZANIH ZA DANAS</a></li>
                                     <li><a href="prikazPacijenataLekar.php">PRIKAZ PACIJENATA</a></li>
+                                    <li><a href="posaljiPorukuPacijentima.php">POSALJI PORUKU PACIJENTIMA</a></li>
+                                    <li><a href="posaljiPorukuAdminu.php">POSALJI PORUKU ADMINISTRATORU</a></li>
+                                    <li><a href="promenaSlikeLekar.php">PROMENA PROFILNE SLIKE</a></li>
                                     <li><a href="promenaLozinkeLekar.php">PROMENA LOZINKE</a></li>
+                                    <li><a href="prikazRasporedaLekar.php">RASPORED RADA</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
@@ -71,10 +77,10 @@
             $vreme = $_POST['datum'];
             $lekar = $_SESSION['zaglavljeEmail'];
             
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "proba";
+            $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);

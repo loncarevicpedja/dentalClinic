@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
         <?php include'dodavanjeLekara.css';?>
@@ -117,12 +118,12 @@
                     
                     <div class="raspored">
                         <label for="slika"><b>Slika</b></label>
-                        <input type="text" placeholder="Unesite link slike..." name="slika" id="slika" required>
+                        <input type="file" placeholder="Unesite link slike..." accept="image/png, image/jpeg" name="slika" id="slika" required>
                     </div>
 
 
 
-                    <button type="submit" class="addBtn" name="dodavanjeLekara">Dodaj vest</button>
+                    <button type="submit" class="addBtn" name="dodavanjeLekara">Dodaj lekara</button>
                 </form>
                 </div>
             </div>
@@ -161,10 +162,10 @@
             $korisnickoIme = create_username($ime, $prezime);
             $lozinka = create_password($ime);
             $lozinkaHash = password_hash($lozinka, PASSWORD_DEFAULT);
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "proba";
+            $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);

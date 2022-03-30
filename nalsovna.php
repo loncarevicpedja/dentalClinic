@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
         <?php include'naslovna.css';?>
@@ -42,8 +43,11 @@
                         </div>
                             <div id="reg_meni" class="reg_meni">
                                 <ul>
+                                    <li><a href="prikazLicnihInformacija.php">LICNE INFORMACIJE</a></li>
                                     <li><a href="zakazivanjePregleda.php">ZAKAZITE PREGLED</a></li>
                                     <li><a href="istorijaBolesti.php">ISTORIJA BOLESTI</a></li>
+                                    <li><a href="promenaSlikePacijent.php">PROMENA PROFILNE FOTOGRAFIJE</a></li>
+                                    <li><a href="promenaIzabranogLekara.php">PROMENA IZABRANOG LEKARA</a></li>
                                     <li><a href="promenaLozinkePacijent.php">PROMENA LOZINKE</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
@@ -62,10 +66,10 @@
             <div id="novosti" class="novosti">
                 <h1>Poslednje vesti</h1>  
                 <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "proba";
+                $servername = "sql201.epizy.com";
+                $username = "epiz_31340445";
+                $password = "elBHhIDkeDNVE";
+                $dbname = "epiz_31340445_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -118,9 +122,9 @@
                 <div class="kartice_doktor">
                 <?php
                 $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "proba";
+                $username = "id18650421_dentalclinicc";
+                $password = "Predrag21.07.2000.";
+                $dbname = "id18650421_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -216,7 +220,7 @@
                             </div>
                             <div class="mail">
                             <i class="far fa-envelope"></i>
-                            <p>loncarevicpedja2000@gmail.com</p>
+                            <p>cdental909@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -224,7 +228,7 @@
                         <h2>ZAKAŽITE BESPLATAN PREGLED</h2>
                         <hr>
                         <p>Prvi pregled u stomatološkoj ordinaciji Dental Clinic je besplatan. Pregledom ćete saznati sve o Vašem stomatološkom problemu i kako ga rešiti. U toku pregleda se dobija informacija kojim sve metodama i na koji nacin se može rešiti problem u Vašim ustima. I na kraju se može dobiti obaveštenje o ceni stomatoloških usluga.</p>
-                        <button class="button-18" role="button">ZAKAŽITE PREGLED</button>
+                        
                     </div>
                     <div class="lokacija">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2831.9075546262457!2d20.460219414923678!3d44.782689986679095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a7041aad2322b%3A0x2f62ab55af9c1698!2sSokobanjska%203%2C%20Beograd!5e0!3m2!1sbs!2srs!4v1641391481344!5m2!1sbs!2srs" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>

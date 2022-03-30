@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
-        <?php include'istorijaBolesti.css';?>
+        <?php include'promenaLozinke.css';?>
     </style>
 </head>
 <body>
@@ -61,58 +61,103 @@
         </div>
         <div class="content">
             <div class="contentCenter">
-                <form method="POST">
-                <h1>Istorija bolesti</h1><br>
-                <?php
-                $servername = "sql201.epizy.com";
-                $username = "epiz_31340445";
-                $password = "elBHhIDkeDNVE";
-                $dbname = "epiz_31340445_dentalclinic";
-
-                // Create connection
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                // Check connection
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                } 
-                $korisnickoIme=$_SESSION["zaglavljeEmail"];
-                $sql = "SELECT * FROM kartoni WHERE pacijent = '$korisnickoIme'";
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                                                
-                        echo "<form method='POST'>
-                        <div class='kartica'>
-                        <h3>Dijagnoza:</h3>
-                        <p>".$row["dijagnoza"]."</p>
-                        <h3>Anamneza:</h3>
-                        <p>".$row["anamneza"]."</p>
-                        <h3>Status:</h3>
-                        <p>".$row["statusP"]."</p>
-                        <h3>Terapija:</h3>
-                        <p>".$row["terapija"]."</p>
-                        <h3>Napomena:</h3>
-                        <p>".$row["napomena"]."</p>
-                    </div><hr>
-                </form>";
+                <h1>Promena lozinke</h1>
+                <div class="forma_za_promenu_lozinke_div" >
+                    <form class="forma_za_promenu_lozinke" action="" method="POST">
+                    <?php 
+                    $servername = "sql201.epizy.com";
+                    $username = "epiz_31340445";
+                    $password = "elBHhIDkeDNVE";
+                    $dbname = "epiz_31340445_dentalclinic";
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
                     }
-                } else {
-                    echo "Nemate istoriju bolesti!";
-                }
-                $conn->close();
-                ?>
+                    $sql = "SELECT jmbg, ime, prezime FROM korisnici WHERE tip='lekar'";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        
+                    echo "<label for='izabraniLekar'><b>Izabrani lekar</b></label>                        
+                        <select id='izabraniLekar' name='izabraniLekar' requare>";
+                        while($row = $result->fetch_assoc()) {
+                                    echo"<option value='".$row['ime']." ".$row['prezime']."'>Dr ".$row['ime']." ".$row['prezime']."</option>";
+                        }
+                        echo "</select>";
+                    } else {
+                        echo "0 results";
+                    }
+                    $conn->close();
+                    ?>
+                        <button type="submit" class="addBtn" name="promenaLekara">Promeni izabranog lekara</button>
+                </form>
+                </div>
             </div>
-           </from> 
         </div>
     </div>
+        <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['promenaLekara']))
+        {
+            promeniLekara();
+        }
+        function promeniLekara(){
+            $nLekar = $_POST["izabraniLekar"];
+            $korisnickoIme = $_SESSION['zaglavljeEmail'];
+            $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
+            $sql = "SELECT izabraniLekar FROM korisnici WHERE username = '$korisnickoIme'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                if($row['izabraniLekar'] != $nLekar)
+                {
+                    $sql = "UPDATE korisnici SET izabraniLekar='$nLekar' WHERE username='$korisnickoIme'";
+    
+                    if ($conn->query($sql) === TRUE) {
+                        echo "<script>alert('Uspesno ste promenili izabranog lekara!')</script>";
+                    } else {
+                        echo "<script>alert('Neuspesna izmena lekara!')</script>";
+                    }
+                    
+                }
+                else{
+                echo "<script>alert('Novi lekar se mora razlikovati od trenutnog!')</script>";
+                }                
+            }
+            $conn->close();
+
+         }
+            
+        ?>
     <script>
         function openMenu() {
             document.getElementById("reg_meni").classList.toggle("show");
             document.getElementById("imagee").classList.toggle("zatamni");
         }
-        
+        function showPasswords(){
+            showPassword("input_lozinka1")
+            showPassword("input_lozinka2")
+            showPassword("input_lozinka3")
+        }
+        function showPassword(id) {
+            var x = document.getElementById(id);
+            if (x.type === "password") {
+              x.type = "text";
+            } else {
+              x.type = "password";
+            }
+}
     </script>
 </body>
 </html>

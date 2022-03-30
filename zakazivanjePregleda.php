@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
         <?php include'zakazivanjePregleda.css';?>
@@ -42,9 +43,12 @@
                             
                         </div>
                             <div id="reg_meni" class="reg_meni">
-                                <ul>
+                            <ul>
+                                    <li><a href="prikazLicnihInformacija.php">LICNE INFORMACIJE</a></li>
                                     <li><a href="zakazivanjePregleda.php">ZAKAZITE PREGLED</a></li>
                                     <li><a href="istorijaBolesti.php">ISTORIJA BOLESTI</a></li>
+                                    <li><a href="promenaSlikePacijent.php">PROMENA PROFILNE FOTOGRAFIJE</a></li>
+                                    <li><a href="promenaIzabranogLekara.php">PROMENA IZABRANOG LEKARA</a></li>
                                     <li><a href="promenaLozinkePacijent.php">PROMENA LOZINKE</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
@@ -60,10 +64,10 @@
                 <form method="POST">
                 <h1>Zakazite pregled</h1><br>
                 <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "proba";
+                $servername = "sql201.epizy.com";
+                $username = "epiz_31340445";
+                $password = "elBHhIDkeDNVE";
+                $dbname = "epiz_31340445_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -107,10 +111,10 @@
             $terminNiz = explode(" ", $termin);
 
             $korisnickoIme = $_SESSION['zaglavljeEmail'];
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "proba";
+            $servername = "sql201.epizy.com";
+    $username = "epiz_31340445";
+    $password = "elBHhIDkeDNVE";
+    $dbname = "epiz_31340445_dentalclinic";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);

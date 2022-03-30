@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
         <?php include'naslovna.css';?>
@@ -64,10 +65,10 @@
             <div class="novosti" id="novosti">
                 <h1>Poslednje vesti</h1>  
                 <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "proba";
+                $servername = "sql201.epizy.com";
+                $username = "epiz_31340445";
+                $password = "elBHhIDkeDNVE";
+                $dbname = "epiz_31340445_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -119,10 +120,10 @@
                 <h1>Naš tim</h1>
                 <div class="kartice_doktor">
                 <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $dbname = "proba";
+                $servername = "sql201.epizy.com";
+                $username = "epiz_31340445";
+                $password = "elBHhIDkeDNVE";
+                $dbname = "epiz_31340445_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -218,7 +219,7 @@
                             </div>
                             <div class="mail">
                             <i class="far fa-envelope"></i>
-                            <p>loncarevicpedja2000@gmail.com</p>
+                            <p>cdental909@gmail.com</p>
                             </div>
                         </div>
                     </div>
