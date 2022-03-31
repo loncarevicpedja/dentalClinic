@@ -1,12 +1,11 @@
 <?php
     // session_start();
     $maticni = $_SESSION["jmbg"];
-    echo "<script>alert('Obrisali ste zahtev za korisnika!')</script>";
 
-    $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+    $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
     
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -19,7 +18,9 @@
     $sql = "DELETE FROM zahtevi WHERE jmbg='$maticni'";
     
     if ($conn->query($sql) === TRUE) {
-        header('location:zahteviAdmin.php');        
+        echo "<script>alert('Uspsno obavljena radnja sa korisnikom!')</script>";
+        // header('location:zahteviAdmin.php');   
+        echo '<meta http-equiv="refresh" content="0; URL=zahteviAdmin.php">';
     } else {
         echo "Error deleting record: " . $conn->error;
     }

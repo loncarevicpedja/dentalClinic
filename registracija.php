@@ -93,6 +93,7 @@
                     $_SESSION['lozinka'] = $lozinka;                                           
                     $to = $email;
                     $_SESSION['mail'] = $to;                
+
                     $subject = "DentalClinic";
                     
                     $message = "<div class='card' style=' border: 1px solid grey;width: 340px; height: 200px; background-color: rgb(252, 252, 252); overflow: hidden; border-radius: 15px;'>
@@ -102,10 +103,9 @@
                         </div>
                         <div class='card_content' style='padding: 10px;'>
                             <h4>Dobrodosao/la u DentalClinic!<br>Zahtev za registraciju mozes izvrsiti klikom na dugme ispod!</h4>
-                            <button value='".$_SESSION['korisnicko_ime'].$_SESSION['ime'].$_SESSION['prezime'].$_SESSION['pol'].$_SESSION['mesto_rodjenja'].$_SESSION['drzava_rodjenja'].$_SESSION['datum_rodjenja'].$_SESSION['jmbg'].$_SESSION['telefon'].$_SESSION['mail'].$_SESSION['izabraniLekar'].$_SESSION['lozinka']."' style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='http://localhost/projekat/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></button>
+                            <button value='".$_SESSION['korisnicko_ime'].$_SESSION['ime'].$_SESSION['prezime'].$_SESSION['pol'].$_SESSION['mesto_rodjenja'].$_SESSION['drzava_rodjenja'].$_SESSION['datum_rodjenja'].$_SESSION['jmbg'].$_SESSION['telefon'].$_SESSION['mail'].$_SESSION['izabraniLekar'].$_SESSION['lozinka']."' style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='https://dentalclinicbg.000webhostapp.com/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></button>
                         </div>
                     </div>";
-                    $url = "<p>http://".$_SERVER["HTTP_HOST"] . dirname($_SERVER["PHP_SELF"]). /verify.php</p>";
                     
                     // Always set content-type when sending HTML email
                     $headers = "MIME-Version: 1.0" . "\r\n";
@@ -115,8 +115,9 @@
                     $headers .= 'From: <cdental909@gmail.com>' . "\r\n";
                     $headers .= 'Cc: '.$to.'' . "\r\n";
                     
-                    mail($to,$subject,$url,$headers);
+                    mail($to,$subject,$message,$headers);
                     echo "<script>alert('Poslali smo Vam link za verifikaciju na mail: '+'$email')</script>";
+                    echo '<meta http-equiv="refresh" content="0; URL=nalsovna.php">';
                 }
             }
         }
@@ -124,10 +125,11 @@
         {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
-        $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+        $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
+
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
         
@@ -141,10 +143,10 @@
         function username_exists($korisnickoIme)
         {
         $query = "SELECT jmbg FROM korisnici WHERE username LIKE '$korisnickoIme'";
-        $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+        $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -205,10 +207,10 @@
                     <label for="telefon"><b>Kontakt telefon</b></label>
                     <input type="text" placeholder="Unesite kontakt telefon" name="kontakt-telefon" id="kontakt-telefon" required>
                     <?php 
-                    $servername = "sql201.epizy.com";
-                    $username = "epiz_31340445";
-                    $password = "elBHhIDkeDNVE";
-                    $dbname = "epiz_31340445_dentalclinic";
+                    $servername = "localhost";
+                    $username = "id18650421_dentalclinicc";
+                    $password = "Predrag21.07.2000.";
+                    $dbname = "id18650421_dentalclinic";
                     $conn = new mysqli($servername, $username, $password, $dbname);
                     // Check connection
                     if ($conn->connect_error) {

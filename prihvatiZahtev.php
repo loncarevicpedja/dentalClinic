@@ -14,10 +14,10 @@ $lozinka = $_SESSION["lozinka"];
 $korisnickoIme = $_SESSION["korisnicko_ime"]; 
 $izabarniLekar = $_SESSION["izabraniLekar"];
 
-$servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+$servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -36,5 +36,4 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn->close();
 ?>

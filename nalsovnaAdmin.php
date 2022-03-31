@@ -16,6 +16,12 @@
     </style>
 </head>
 <body>
+    <script>
+        function openMenu() {
+            document.getElementById("reg_meni").classList.toggle("show");
+            document.getElementById("imagee").classList.toggle("zatamni");
+        }
+    </script>
     <div class="container" id="container">
         <div class="header">
             <div class="navbar">
@@ -65,10 +71,10 @@
             <div class="novosti" id="novosti">
                 <h1>Poslednje vesti</h1>  
                 <?php
-                $servername = "sql201.epizy.com";
-                $username = "epiz_31340445";
-                $password = "elBHhIDkeDNVE";
-                $dbname = "epiz_31340445_dentalclinic";
+                $servername = "localhost";
+                $username = "id18650421_dentalclinicc";
+                $password = "Predrag21.07.2000.";
+                $dbname = "id18650421_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -120,10 +126,10 @@
                 <h1>Naš tim</h1>
                 <div class="kartice_doktor">
                 <?php
-                $servername = "sql201.epizy.com";
-                $username = "epiz_31340445";
-                $password = "elBHhIDkeDNVE";
-                $dbname = "epiz_31340445_dentalclinic";
+                $servername = "localhost";
+                $username = "id18650421_dentalclinicc";
+                $password = "Predrag21.07.2000.";
+                $dbname = "id18650421_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -238,11 +244,6 @@
                 </div>
         </div>
     </div>
-    <script>
-        function openMenu() {
-            document.getElementById("reg_meni").classList.toggle("show");
-            document.getElementById("imagee").classList.toggle("zatamni");
-        }
-    </script>
+    
 </body>
 </html>

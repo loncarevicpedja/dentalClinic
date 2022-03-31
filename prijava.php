@@ -37,11 +37,11 @@
             </div>
         </div>
         <?php
-        function redirect($location)
-        {
-            header("location: {$location}");
-            exit();
-        }
+        // function redirect($location)
+        // {
+        //     header("location: {$location}");
+        //     exit();
+        // }
         function validate_user_login()
         {
             $errors = [];
@@ -62,13 +62,16 @@
                         if (user_login($korisnickoIme, $password) !== false) {
                             if($typeUser == 'pacijent')
                             {
-                                redirect('nalsovna.php');
+                                // redirect('nalsovna.php');
+                                echo '<meta http-equiv="refresh" content="0; URL=nalsovna.php">';
                             }
                             elseif($typeUser == 'lekar'){
-                                redirect('nalsovnaLekar.php');
+                                // redirect('nalsovnaLekar.php');
+                                echo '<meta http-equiv="refresh" content="0; URL=nalsovnaLekar.php">';
                             }
                             elseif($typeUser == 'admin'){
-                                redirect('nalsovnaAdmin.php');
+                                // redirect('nalsovnaAdmin.php');
+                                echo '<meta http-equiv="refresh" content="0; URL=nalsovnaAdmin.php">';
                             }
                         } else {
                             echo "<script>alert('Neispravan unos, probajte ponovo!')</script>";
@@ -85,10 +88,10 @@
         }
         function user_login($korisnickoIme, $pass)
         {
-            $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+            $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
             
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);

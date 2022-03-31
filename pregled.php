@@ -67,10 +67,10 @@
                         <br><br><p><?php echo date('Y-m-d'); ?></p>
         <?php
                 $maticni = $_SESSION["jmbg"];            
-                $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+                $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -111,10 +111,10 @@
                     <div class="istorija_bolesti">
                     <?php
                     $bolesnik = $_POST["pacijent"];
-                    $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+                    $servername = "localhost";
+                    $username = "id18650421_dentalclinicc";
+                    $password = "Predrag21.07.2000.";
+                    $dbname = "id18650421_dentalclinic";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -190,10 +190,10 @@
                         $datum = date('Y-m-d');
                         $vreme = strval(date("H:0:0"));
                         $lekar = $_SESSION['zaglavljeEmail'];
-                        $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+                        $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
 
                         // Create connection
                         $conn = new mysqli($servername, $username, $password, $dbname);

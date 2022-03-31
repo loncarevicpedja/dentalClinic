@@ -39,6 +39,7 @@
         </div>
         <?php 
         $slika="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+        $ime= "";
         $ime = $_SESSION["ime"];
         $prezime = $_SESSION["prezime"];
         $pol = $_SESSION["pol"];
@@ -56,10 +57,10 @@
             $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
 
                
-            $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+            $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
 
             // Create connection
             $conn = new mysqli($servername, $username, $password, $dbname);

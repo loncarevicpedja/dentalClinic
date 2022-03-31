@@ -82,10 +82,10 @@
         function promeniSliku(){
             $slika = $_POST["novaSlika"];
             $korisnickoIme = $_SESSION['zaglavljeEmail'];
-            $servername = "sql201.epizy.com";
-    $username = "epiz_31340445";
-    $password = "elBHhIDkeDNVE";
-    $dbname = "epiz_31340445_dentalclinic";
+            $servername = "localhost";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
 
             $conn = new mysqli($servername, $username, $password, $dbname);
             if ($conn->connect_error) {
