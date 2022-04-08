@@ -48,7 +48,7 @@
                             
                         </div>
                             <div id="reg_meni" class="reg_meni">
-                                <ul>
+                            <ul>
                                     <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
                                     <li><a href="./prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
                                     <li><a href="./prikazLekara.php">PRIKAZ LEKARA</a></li>

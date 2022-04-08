@@ -44,11 +44,14 @@
                         </div>
                             <div id="reg_meni" class="reg_meni">
                                 <ul>
+                                <ul>
                                     <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
-                                    <li><a href="prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
-                                    <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
+                                    <li><a href="./prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
+                                    <li><a href="./prikazLekara.php">PRIKAZ LEKARA</a></li>
+                                    <li><a href="http://localhost/projekat/dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
                                     <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
+                                </ul>
                                 </ul>
                             </div>
                         </div>

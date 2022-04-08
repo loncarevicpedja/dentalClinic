@@ -92,7 +92,29 @@
                     $_SESSION['izabraniLekar'] = $izabraniLekar;                
                     $_SESSION['lozinka'] = $lozinka;                                           
                     $to = $email;
-                    $_SESSION['mail'] = $to;                
+                    $_SESSION['mail'] = $to;      
+                    $servername = "localhost";
+                    $username = "id18650421_dentalclinicc";
+                    $password = "Predrag21.07.2000.";
+                    $dbname = "id18650421_dentalclinic";
+
+                    // Create connection
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    } 
+                
+                    $sql = "INSERT INTO zahtevi (verify, ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email, username, lozinka, slika)
+                    VALUES ('no', '$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$maticni', '$telefon', '$izabraniLekar', '$email', '$korisnicko_ime','$lozinka', '$slika')";
+
+                    if ($conn->query($sql) === TRUE) {
+
+                    } else {
+                        echo "Error: " . $sql . "<br>" . $conn->error;echo "Greska!";
+                    }
+                
+                    $conn->close();            
 
                     $subject = "DentalClinic";
                     
@@ -103,7 +125,7 @@
                         </div>
                         <div class='card_content' style='padding: 10px;'>
                             <h4>Dobrodosao/la u DentalClinic!<br>Zahtev za registraciju mozes izvrsiti klikom na dugme ispod!</h4>
-                            <button value='".$_SESSION['korisnicko_ime'].$_SESSION['ime'].$_SESSION['prezime'].$_SESSION['pol'].$_SESSION['mesto_rodjenja'].$_SESSION['drzava_rodjenja'].$_SESSION['datum_rodjenja'].$_SESSION['jmbg'].$_SESSION['telefon'].$_SESSION['mail'].$_SESSION['izabraniLekar'].$_SESSION['lozinka']."' style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='https://dentalclinicbg.000webhostapp.com/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></button>
+                            <input type='submit' onclick='verifikuj($to)' style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='https://dentalclinicbg.000webhostapp.com/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></input>
                         </div>
                     </div>";
                     
@@ -121,14 +143,34 @@
                 }
             }
         }
+        function verifikuj($mejl){
+            $servername = "localhost";
+            $username = "id18650421_dentalclinicc";
+            $password = "Predrag21.07.2000.";
+            $dbname = "id18650421_dentalclinic";
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
+
+            $sql = "UPDATE zahtevi SET verify='yes' WHERE email='$mejl'";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "Record updated successfully";
+            } else {
+                echo "Error updating record: " . $conn->error;
+            }
+            $conn->close();
+        }
         function email_exists($email)
         {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
         $servername = "localhost";
-    $username = "id18650421_dentalclinicc";
-    $password = "Predrag21.07.2000.";
-    $dbname = "id18650421_dentalclinic";
+        $username = "id18650421_dentalclinicc";
+        $password = "Predrag21.07.2000.";
+        $dbname = "id18650421_dentalclinic";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -311,6 +353,8 @@
               x.type = "password";
             }
         }
+        ime = document.getElementById("ime")
+        console.log(ime.value)
     </script>
 </body>
 </html>
