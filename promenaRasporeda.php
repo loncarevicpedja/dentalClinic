@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">    
     <title>Dental clinic</title>
     <style>
-        <?php include'prikazPacijentaPoDanu.css';?>
+        <?php include'promenaRasporeda.css';?>
     </style>
 </head>
 <body>
@@ -44,14 +44,12 @@
                         </div>
                         <div id="reg_meni" class="reg_meni">
                         <ul>
-                                    <li><a href="prikazLicnihInformacijaLekar.php">PRIKAZ LICNIH INFORMACIJA</a></li>
-                                    <li><a href="prikazPacijentaPoDanu.php">PRIKAZ PREGLEDA ZAKAZANIH ZA DANAS</a></li>
-                                    <li><a href="prikazPacijenataLekar.php">PRIKAZ PACIJENATA</a></li>
-                                    <li><a href="posaljiPorukuPacijentima.php">POSALJI PORUKU PACIJENTIMA</a></li>
-                                    <li><a href="posaljiPorukuAdminu.php">POSALJI PORUKU ADMINISTRATORU</a></li>
-                                    <li><a href="promenaSlikeLekar.php">PROMENA PROFILNE SLIKE</a></li>
-                                    <li><a href="promenaLozinkeLekar.php">PROMENA LOZINKE</a></li>
-                                    <li><a href="prikazRasporedaLekar.php">RASPORED RADA</a></li>
+                                    <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
+                                    <li><a href="prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
+                                    <li><a href="prikazLekara.php">PRIKAZ LEKARA</a></li>
+                                    <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
+                                    <li><a href="promenaRasporeda.php">PROMENA RASPOREDA</a></li>
+                                    <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
                             </div>
@@ -63,10 +61,10 @@
         </div>
         <div class="content">
             <div class="contentCenter">
-                <h1>Prikaz pacijenta po danu</h1>
+                <h1>Promena</h1>
                 <div class="forma_div" >
                     <form class="forma" action="" method="POST">
-                        <input name="datum" type="date" value="<?php echo date('Y-m-d'); ?>" />
+                        <input name="datum" type="date"/>
                         <button type="submit" class="addBtn" name="prikazi">Prikazi</button>
         <?php
         if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['prikazi']))
@@ -75,6 +73,7 @@
         }
         function prikaziPacijente(){
             $vreme = $_POST['datum'];
+            $_SESSION['nesto'] = $vreme;
             $lekar = $_SESSION['zaglavljeEmail'];
             
             $servername = "localhost";
@@ -94,7 +93,7 @@
                 $result = $conn->query($sql);
                         if ($result->num_rows > 0) {
                             $row = $result->fetch_assoc();
-
+                            $datuum = $row["datum"];
                             echo "<form method='POST'>
                                 <div class='kartica'>
                                 <h3>Datum:</h3>
@@ -106,13 +105,70 @@
                             </div>
                         </form>";
                             }
-                        
-                                              
-                                                
-                    
-                $conn->close();
             }
         ?>
+        <h3>Promena</h3>
+        <form method="POST">
+            <label for="smena"><b>Smena</b></label><br>
+            <select id="smena" name="smena">
+                <option value="Ismena">I smena</option>
+                <option value="IIsmena">II smena</option>
+            </select><br>
+            
+                <?php 
+                    $servername = "localhost";
+                    $username = "id18650421_dentalclinicc";
+                    $password = "Predrag21.07.2000.";
+                    $dbname = "id18650421_dentalclinic";
+                    $conn = new mysqli($servername, $username, $password, $dbname);
+                    // Check connection
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT jmbg, ime, prezime FROM korisnici WHERE tip='lekar'";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        
+                    echo "<label for='izabraniLekarI'><b>I smena:</b></label><br>                        
+                        <select id='izabraniLekarI' name='izabraniLekarI'>";
+                        while($row = $result->fetch_assoc()) {
+                                    echo"<option value='".$row['ime']." ".$row['prezime']."'>".$row['ime']." ".$row['prezime']."</option>";
+                        }
+                        echo "</select>";
+                    } else {
+                        echo "0 results";
+                    }
+                    if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['promena']))
+                        {
+                           promena();
+                        }
+                    function promena(){
+                        $odabraniDatum = $_SESSION['nesto'];
+                        $Ismena = $_POST['izabraniLekarI'];
+                        $smena = $_POST['smena'];
+                        
+                        $servername = "localhost";
+                    $username = "id18650421_dentalclinicc";
+                    $password = "Predrag21.07.2000.";
+                    $dbname = "id18650421_dentalclinic";                
+                        
+                        $conn = new mysqli($servername, $username, $password, $dbname);
+
+                        $sql = "UPDATE raspored SET $smena='$Ismena' WHERE datum='$odabraniDatum'";
+                        if ($conn->query($sql) === TRUE) {
+                            $sqll = "UPDATE rezervacije SET lekar='$Ismena' WHERE datum='$odabraniDatum'";
+                            if ($conn->query($sqll) === TRUE) {
+                            echo "<script>alert('Uspesno izmenjen raspored!')</script>";
+                            }
+                        } else {
+                            echo "<script>alert('Neuspesno izmenjen raspored!')</script>";
+                        }
+                    
+                    
+                }
+            ?>
+                        <button type="submit" class="changeBtn" name="promena">Promeni</button>
                 </form>
                 </div>
             </div>

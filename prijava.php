@@ -25,11 +25,11 @@
                 <div class="meni">
                     <ul>
                     <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="./nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="./nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="./nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="./nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="./nalsovna.php/#footer"><p>KONTAKT</p></a></li>    
                         
                         <li id="prijava"><a href="#"><p>PRIJAVI SE</p></a></li>
                     </ul>
@@ -81,7 +81,7 @@
                 if (!empty($errors)) {
                     foreach ($errors as $error) {
                         echo "<script>alert('".$error."')</script>";
-
+                        echo "<script>alert('Neispravan unos, probajte ponovo!')</script>";
                     }
                 }
             }        
@@ -108,9 +108,11 @@
                     $_SESSION['zaglavljeEmail'] = $data['username'];
                     return $data['tip'];
                 } else {
+                    echo "<script>alert('Neispravan unos, probajte ponovo!')</script>";
                     return false;
                 }
             } else {
+                echo "<script>alert('Neispravan unos, probajte ponovo!')</script>";
                 return false;
             }
             $conn->close();

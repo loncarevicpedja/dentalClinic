@@ -26,11 +26,11 @@
                     <div class="meni">
                         <ul>
                         <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="./nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="./nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="./nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="./nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="./nalsovna.php/#footer"><p>KONTAKT</p></a></li>    
                         
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         </ul>
@@ -58,13 +58,41 @@
                 $email = $_POST['email'];
                 $lozinka = $_POST['psw'];
                 $potvrdjena_lozinka = $_POST['psw-repeat']; 
+                $lozinkaa = password_hash($lozinka, PASSWORD_DEFAULT);
                 $izabraniLekar = $_POST['izabraniLekar'];               
                 $korisnicko_ime = strval(create_username($ime, $prezime));
                 if (strlen($ime) < 3) {
                     $errors[] = "Vase ime ne sme biti krace od 3 karaktera";
                 }
+                if (!preg_match("/^[a-zA-Z]*$/",$ime)) {
+                    $errors[] = "Ime ne sme sadrzati bilo sta osim slova.";
+                }
                 if (strlen($prezime) < 3) {
                     $errors[] = "Vase prezime ne sme biti krace od 3 karaktera";
+                }
+                if (!preg_match("/^[a-zA-Z]*$/",$prezime)) {
+                    $errors[] = "Prezime ne sme sadrzati bilo sta osim slova.";
+                }
+                if (!preg_match("/^[a-zA-Z ]*$/",$mesto_rodjenja)) {
+                    $errors[] = "Mesto rodjenja ne sme sadrzati bilo sta osim slova.";
+                }
+                if (strlen($mesto_rodjenja) < 2) {
+                    $errors[] = "Mesto rodjenja ne sme biti krace od 8 karaktera";
+                }
+                if (strlen($drzava_rodjenja) < 2) {
+                    $errors[] = "Drzava rodjenja ne sme biti kraca od 8 karaktera";
+                }
+                if (!preg_match("/^[a-zA-Z ]*$/",$drzava_rodjenja)) {
+                    $errors[] = "Drzava rodjenja ne sme sadrzati bilo sta osim slova.";
+                }
+                if (!preg_match("/^[0-9]*$/",$maticni)) {
+                    $errors[] = "Maticni broj mora sadrzati samo brojeve.";
+                }
+                if (!preg_match("/^[0-9+ ]*$/",$telefon)) {
+                    $errors[] = "Konakt telefon mora sadrzati samo brojeve.";
+                }
+                if (strlen($maticni) != 13) {
+                    $errors[] = "Maticni broj mora sadrzati 13 cifara";
                 }
                 if (email_exists($email)) {
                     $errors[] = "Uneti mejl vec postoji";
@@ -78,46 +106,38 @@
                 if (!empty($errors)) {
                     foreach ($errors as $error) {
                     echo "<script>alert('".$error."')</script>";
+                    // echo "$error";
+                    return;
                     }
                 } else {
-                    $_SESSION['korisnicko_ime'] = $korisnicko_ime;
-                    $_SESSION['ime'] = $ime;                
-                    $_SESSION['prezime'] = $prezime;                
-                    $_SESSION['pol'] = $pol;                
-                    $_SESSION['mesto_rodjenja'] = $mesto_rodjenja;              
-                    $_SESSION['drzava_rodjenja'] = $drzava_rodjenja;              
-                    $_SESSION['datum_rodjenja'] = $datum_rodjenja;              
-                    $_SESSION['jmbg'] = $maticni;              
-                    $_SESSION['telefon'] = $telefon;              
-                    $_SESSION['izabraniLekar'] = $izabraniLekar;                
-                    $_SESSION['lozinka'] = $lozinka;                                           
                     $to = $email;
-                    $_SESSION['mail'] = $to;      
+                    $slika="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
                     $servername = "localhost";
                     $username = "id18650421_dentalclinicc";
                     $password = "Predrag21.07.2000.";
                     $dbname = "id18650421_dentalclinic";
 
-                    // Create connection
-                    $conn = new mysqli($servername, $username, $password, $dbname);
-                    // Check connection
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    } 
-                
-                    $sql = "INSERT INTO zahtevi (verify, ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email, username, lozinka, slika)
-                    VALUES ('no', '$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$maticni', '$telefon', '$izabraniLekar', '$email', '$korisnicko_ime','$lozinka', '$slika')";
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            } 
 
-                    if ($conn->query($sql) === TRUE) {
+            $sql = "INSERT INTO zahtevi (verify, ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email, username, lozinka, slika)
+            VALUES ('no','$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$maticni', '$telefon', '$izabraniLekar', '$email', '$korisnicko_ime','$lozinkaa', '$slika')";
 
-                    } else {
-                        echo "Error: " . $sql . "<br>" . $conn->error;echo "Greska!";
-                    }
+            if ($conn->query($sql) === TRUE) {
                 
-                    $conn->close();            
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;echo "Greska!";
+            }
+
+            $conn->close();  
+        }
 
                     $subject = "DentalClinic";
-                    
+                        
                     $message = "<div class='card' style=' border: 1px solid grey;width: 340px; height: 200px; background-color: rgb(252, 252, 252); overflow: hidden; border-radius: 15px;'>
                         <div class='card_header' style='width: 100%; height: 50px; background-color: rgb(7, 137, 212); padding-left: 5px;padding-top: 2px;'>
                         <div class='logo' style='margin-top: 5px; width: 85px; background-color: white; padding: 7px; border-radius: 15px;'><b>dentalClinic</b></div>
@@ -125,7 +145,10 @@
                         </div>
                         <div class='card_content' style='padding: 10px;'>
                             <h4>Dobrodosao/la u DentalClinic!<br>Zahtev za registraciju mozes izvrsiti klikom na dugme ispod!</h4>
-                            <input type='submit' onclick='verifikuj($to)' style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;'><a href='https://dentalclinicbg.000webhostapp.com/verify.php' style='text-decoration: none; color: aliceblue;'>Registruj se!</a></input>
+                            <form action='https://dentalclinicbg.000webhostapp.com/verify.php' method='GET'>
+                            <input type='text' name='mejlPost' value='".$to."' style='display:none'>
+                            <input type='submit' style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 30%;' value='Registruj se!'>
+                            </form>
                         </div>
                     </div>";
                     
@@ -140,37 +163,17 @@
                     mail($to,$subject,$message,$headers);
                     echo "<script>alert('Poslali smo Vam link za verifikaciju na mail: '+'$email')</script>";
                     echo '<meta http-equiv="refresh" content="0; URL=nalsovna.php">';
-                }
+                
             }
-        }
-        function verifikuj($mejl){
-            $servername = "localhost";
-            $username = "id18650421_dentalclinicc";
-            $password = "Predrag21.07.2000.";
-            $dbname = "id18650421_dentalclinic";
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            } 
-
-            $sql = "UPDATE zahtevi SET verify='yes' WHERE email='$mejl'";
-
-            if ($conn->query($sql) === TRUE) {
-                echo "Record updated successfully";
-            } else {
-                echo "Error updating record: " . $conn->error;
-            }
-            $conn->close();
         }
         function email_exists($email)
         {
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
         $query = "SELECT jmbg FROM korisnici WHERE email LIKE '$email'";
         $servername = "localhost";
-        $username = "id18650421_dentalclinicc";
-        $password = "Predrag21.07.2000.";
-        $dbname = "id18650421_dentalclinic";
+    $username = "id18650421_dentalclinicc";
+    $password = "Predrag21.07.2000.";
+    $dbname = "id18650421_dentalclinic";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
@@ -200,6 +203,7 @@
                 return false;
             }
         }
+        
         function create_username($name, $surname){
                 $a = 1; 
                 $korisnickoIme = "";
@@ -218,7 +222,7 @@
         validate_user_registration();
         ?>
         <div class="content">
-            <form method="POST">
+            <form id="formica" method="POST">
                 <div class="cont">
                     <h1>Registracija</h1>
                     <hr>
@@ -353,8 +357,6 @@
               x.type = "password";
             }
         }
-        ime = document.getElementById("ime")
-        console.log(ime.value)
     </script>
 </body>
 </html>

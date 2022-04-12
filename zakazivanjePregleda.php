@@ -27,11 +27,11 @@
                 <div class="meni">
                     <ul>
                     <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="./nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="./nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="./nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="./nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="./nalsovna.php/#footer"><p>KONTAKT</p></a></li>    
                         
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
@@ -76,13 +76,15 @@
                     die("Connection failed: " . $conn->connect_error);
                 } 
                 $korisnickoIme=$_SESSION["zaglavljeEmail"];
+                $dDatum = date("Y-m-d");
+                $trVreme = date("H:i:sa");
                 $sql = "SELECT izabraniLekar FROM korisnici WHERE username='$korisnickoIme'";
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
                     $lekar = $row['izabraniLekar'];
-                    $sqll = "SELECT datum, vreme FROM rezervacije WHERE lekar='$lekar' AND statusTermina='slobodan'";
+                    $sqll = "SELECT datum, vreme FROM rezervacije WHERE lekar='$lekar' AND statusTermina='slobodan' AND vreme > '$trVreme' OR datum > '$dDatum'";
                     $resultt = $conn->query($sqll);
                     echo "<br><label for='termin'><b>Slobodni termini za Vaseg izabranog lekara:</b></label><br><br>                       
                         <select id='termin' name='termin'>";

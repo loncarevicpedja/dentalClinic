@@ -27,11 +27,11 @@
                 <div class="meni">
                     <ul>
                     <li><a href="nalsovnaAdmin.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaAdmin.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#footer"><p>KONTAKT</p></a></li>    
                         
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
@@ -46,9 +46,10 @@
                                 <ul>
                                 <ul>
                                     <li class="pregledKorisnika"><a href="zahteviAdmin.php">PREGLED ZAHTEVA</a></li>
-                                    <li><a href="./prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
-                                    <li><a href="./prikazLekara.php">PRIKAZ LEKARA</a></li>
-                                    <li><a href="http://localhost/projekat/dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
+                                    <li><a href="prikazKorisnika.php">PRIKAZ KOSINIKA</a></li>
+                                    <li><a href="prikazLekara.php">PRIKAZ LEKARA</a></li>
+                                    <li><a href="dodavanjeLekara.php">KREIRAJ NALOG ZA LEKARA</a></li>
+                                    <li><a href="promenaRasporeda.php">PROMENA RASPOREDA</a></li>
                                     <li><a href="dodavanjeVestiAdmin.php">DODAJ VEST</a></li>
                                     <li id="odjava"><a href="./logout.php">ODJAVITE SE<i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
                                 </ul>
@@ -177,8 +178,8 @@
                 die("Connection failed: " . $conn->connect_error);
             } 
 
-            $sql = "INSERT INTO korisnici (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, email, username, lozinka, slika, tip)
-            VALUES ('$ime', '$prezime', '$pol', '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$maticni', '$telefon', '$email', '$korisnickoIme', '$lozinkaHash', '$slika', 'lekar')";
+            $sql = "INSERT INTO korisnici (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email, username, lozinka, slika, tip)
+            VALUES ('$ime', '$prezime', '$pol', '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$maticni', '$telefon', ' ' , '$email', '$korisnickoIme', '$lozinkaHash', '$slika', 'lekar')";
 
             if ($conn->query($sql) === TRUE) {
                 $to = $email;
@@ -193,7 +194,7 @@
                         <h4 style='text-align: center;'>".$korisnickoIme."</h4>
                         <h4>Lozinka:</h4>
                         <h4 style='text-align: center;'>".$lozinka."</h4>
-                        <button style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 40%;'><a href='http://localhost/projekat/prijava.php' style='text-decoration: none; color: aliceblue;'>Prijavi se!</a></button>
+                        <button style='background-color: rgb(7, 137, 212); height: 30px; border: none; color: antiquewhite; margin-left: 40%;'><a href='https://dentalclinicbg.000webhostapp.com/prijava.php' style='text-decoration: none; color: aliceblue;'>Prijavi se!</a></button>
                     </div>
                 </div>";
                 $headers = "MIME-Version: 1.0" . "\r\n";

@@ -27,11 +27,11 @@
                 <div class="meni">
                     <ul>
                     <li><a href="nalsovnaLekar.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovnaLekar.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="./nalsovnaLekar.php/#footer"><p>KONTAKT</p></a></li>    
                         
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
@@ -128,7 +128,7 @@
             
                     }
 
-                }
+                
                 else{
                 echo "<script>alert('Doslo je do greske!')</script>";
                 }

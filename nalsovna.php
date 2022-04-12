@@ -27,11 +27,11 @@
                 <div class="meni">
                     <ul>
                         <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="#novosti"><p>VESTI</p></a></li>
+                        <li><a href="#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="#footer"><p>KONTAKT</p></a></li>    
                         <?php if(!isset($_SESSION['zaglavljeEmail'])) : ?>
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         <?php else : ?>

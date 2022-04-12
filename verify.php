@@ -26,11 +26,11 @@
                     <div class="meni">
                         <ul>
                         <li><a href="nalsovna.php"><p>NASLOVNA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#novosti"><p>VESTI</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
-                        <li><a href="http://localhost/projekat/nalsovna.php/#footer"><p>KONTAKT</p></a></li>
+                        <li><a href="./nalsovna.php/#novosti"><p>VESTI</p></a></li>
+                        <li><a href="./nalsovna.php/#o_nama"><p>O NAMA</p></a></li>
+                        <li><a href="./nalsovna.php/#nas_tim"><p>OSOBLJE</p></a></li>
+                        <li><a href="./nalsovna.php/#galerija"><p>GALERIJA</p></a></li>
+                        <li><a href="./nalsovna.php/#footer"><p>KONTAKT</p></a></li>    
                         
                             <li id="prijava"><a href="prijava.php"><p>PRIJAVI SE</p></a></li>
                         </ul>
@@ -38,52 +38,74 @@
             </div>
         </div>
         <?php 
-        $slika="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
-        $ime= "";
-        $ime = $_SESSION["ime"];
-        $prezime = $_SESSION["prezime"];
-        $pol = $_SESSION["pol"];
-        $mesto_rodjenja = $_SESSION["mesto_rodjenja"];
-        $drzava_rodjenja = $_SESSION["drzava_rodjenja"];
-        $datum_rodjenja = $_SESSION["datum_rodjenja"];
-        $jmbg = $_SESSION["jmbg"];
-        $telefon = $_SESSION["telefon"];
-        $email = $_SESSION["mail"];
-        $lozinka = $_SESSION["lozinka"];              
-        $korisnickoIme = $_SESSION["korisnicko_ime"]; 
-        $izabraniLekar = $_SESSION['izabraniLekar'];                
+    //     $slika="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
+    //     $ime = $_SESSION["ime"];
+    //     $prezime = $_SESSION["prezime"];
+    //     $pol = $_SESSION["pol"];
+    //     $mesto_rodjenja = $_SESSION["mesto_rodjenja"];
+    //     $drzava_rodjenja = $_SESSION["drzava_rodjenja"];
+    //     $datum_rodjenja = $_SESSION["datum_rodjenja"];
+    //     $jmbg = $_SESSION["jmbg"];
+    //     $telefon = $_SESSION["telefon"];
+    //     $email = $_SESSION["mail"];
+    //     $lozinka = $_SESSION["lozinka"];              
+    //     $korisnickoIme = $_SESSION["korisnicko_ime"]; 
+    //     $izabraniLekar = $_SESSION['izabraniLekar'];                
 
-        function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $izabraniLekar, $email, $lozinka, $korisnickoIme, $slika){
-            $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
+    //     function create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $izabraniLekar, $email, $lozinka, $korisnickoIme, $slika){
+    //         $lozinka = password_hash($lozinka, PASSWORD_DEFAULT);
 
                
-            $servername = "localhost";
-    $username = "id18650421_dentalclinicc";
-    $password = "Predrag21.07.2000.";
-    $dbname = "id18650421_dentalclinic";
+    //         $servername = "localhost";
+    // $username = "id18650421_dentalclinicc";
+    // $password = "Predrag21.07.2000.";
+    // $dbname = "id18650421_dentalclinic";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            } 
+    //         // Create connection
+    //         $conn = new mysqli($servername, $username, $password, $dbname);
+    //         // Check connection
+    //         if ($conn->connect_error) {
+    //             die("Connection failed: " . $conn->connect_error);
+    //         } 
 
-            $sql = "INSERT INTO zahtevi (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email, username, lozinka, slika)
-            VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$jmbg', '$telefon', '$izabraniLekar', '$email', '$korisnickoIme','$lozinka', '$slika')";
+    //         $sql = "INSERT INTO zahtevi (ime, prezime, pol, mesto_rodjenja, drzava_rodjenja, datum_rodjenja, jmbg, telefon, izabraniLekar, email, username, lozinka, slika)
+    //         VALUES ('$ime', '$prezime', '$pol' , '$mesto_rodjenja', '$drzava_rodjenja', '$datum_rodjenja', '$jmbg', '$telefon', '$izabraniLekar', '$email', '$korisnickoIme','$lozinka', '$slika')";
 
-            if ($conn->query($sql) === TRUE) {
+    //         if ($conn->query($sql) === TRUE) {
                 
-            } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;echo "Greska!";
-            }
+    //         } else {
+    //             echo "Error: " . $sql . "<br>" . $conn->error;echo "Greska!";
+    //         }
 
-            $conn->close();  
+    //         $conn->close();  
+    //     }
+
+
+
+    //     create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $izabraniLekar, $email, $lozinka, $korisnickoIme, $slika);
+    
+        $mejl=$_GET["mejlPost"];
+        $servername = "localhost";
+        $username = "id18650421_dentalclinicc";
+        $password = "Predrag21.07.2000.";
+        $dbname = "id18650421_dentalclinic";
+        
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        
+        $sql = "UPDATE zahtevi SET verify='yes' WHERE email='$mejl'";
+        
+        if ($conn->query($sql) === TRUE) {
+        } else {
+            echo "Error updating record: " . $conn->error;
         }
-
-
-
-        create_user($ime, $prezime, $pol, $mesto_rodjenja, $drzava_rodjenja, $datum_rodjenja, $jmbg, $telefon, $izabraniLekar, $email, $lozinka, $korisnickoIme, $slika);
+        
+        $conn->close();
+    
         session_destroy();
         ?>
         <div class="content_verify">

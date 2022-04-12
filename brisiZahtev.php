@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     $maticni = $_SESSION["jmbg"];
 
     $servername = "localhost";
